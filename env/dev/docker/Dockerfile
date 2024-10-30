@@ -10,11 +10,11 @@ RUN mkdir /app
 ARG CONF_FILE="./env/dev/conf/docker.yml"
 COPY ${CONF_FILE} /app/app.yml
 
-COPY --from=builder dependencies/ /app/dependencies/
-COPY --from=builder snapshot-dependencies/ /app/snapshot-dependencies/
-COPY --from=builder spring-boot-loader/ /app/spring-boot-loader/
-COPY --from=builder application/ /app/application/
+COPY --from=builder dependencies/ /app/
+COPY --from=builder snapshot-dependencies/ /app/
+COPY --from=builder spring-boot-loader/ /app/
+COPY --from=builder application/ /app/
 
 WORKDIR /app
 
-ENTRYPOINT ["java", "org.springframework.boot.loader.JarLauncher", "--spring.config.location=file:/app/app.yml"]
+ENTRYPOINT ["java", "org.springframework.boot.loader.launch.JarLauncher", "--spring.config.location=file:/app/app.yml"]
