@@ -1,0 +1,36 @@
+<footer th:fragment="footer" class="mt-20">
+    <div class="bg-deep-sky-900 py-20 text-white">
+        <div class="max-w-screen-xl px-4 mx-auto">
+            <!-- Top -->
+            <div class="flex flex-col md:flex-row pb-4">
+                <!-- Logos and address -->
+                <div class="w-full md:w-4/12 mb-8 md:mb-0">
+                    <div class="mb-6">
+                        <img src="/img/brand/logo_white.png" alt="Monitoring for Justice" class="h-12 mb-6">
+                        <img src="/img/brand/partners_white.png" alt="Project Partners" class="h-7 mb-16">
+                    </div>
+                    <address class="not-italic text-sm">
+                        <p th:text="#{footer.contacts.country} + ' ' + #{footer.contacts.city}">Country and city</p>
+                        <p th:text="#{footer.contacts.address}" class="mb-4">Address</p>
+                        <a href="tel:+996312311671" class="text-white hover:underline">+996 312 311671</a>
+                    </address>
+                </div>
+
+                <!-- Bottom menu -->
+                <div th:replace="~{fragments/navigation :: bottom}"></div>
+            </div>
+
+            <!-- Bottom -->
+            <div class="max-w-screen-xl mx-auto flex flex-col md:flex-row">
+                <div th:replace="~{fragments/social}"></div>
+
+                <div class="w-full md:w-8/12">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-xs">
+                        <p th:text="#{footer.disclaimer}">Disclaimer</p>
+                        <p th:text="#{footer.copyright}">Copyright</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

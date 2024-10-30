@@ -1,0 +1,139 @@
+<nav>
+    <button th:fragment="mobile" data-collapse-toggle="navbar-default"
+            type="button"
+            class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-200"
+            aria-controls="navbar-default"
+            aria-expanded="false">
+        <span class="sr-only">Open main menu</span>
+        <svg class="w-5 h-5"
+             aria-hidden="true"
+             xmlns="http://www.w3.org/2000/svg"
+             fill="none"
+             viewBox="0 0 17 14">
+            <path stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M1 1h15M1 7h15M1 13h15"/>
+        </svg>
+    </button>
+
+    <div th:fragment="main" class="hidden w-full md:block md:w-auto" id="navbar-default">
+        <ul class="uppercase text-xs flex flex-col p-4 md:p-0 mt-4 border border-sky-100 rounded-lg bg-sky-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white">
+            <li>
+                <a href="#"
+                   class="block py-2 px-3 text-white bg-deep-sky-900 rounded md:bg-transparent md:text-deep-sky-900 md:p-0"
+                   aria-current="page"
+                   th:text="#{section.about}">About</a>
+            </li>
+            <li>
+                <a href="#"
+                   class="block py-2 px-3 text-deep-sky-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0"
+                   th:text="#{section.education}">Education</a>
+            </li>
+            <li>
+                <a href="#"
+                   class="block py-2 px-3 text-deep-sky-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0"
+                   th:text="#{section.analytics}">Analytics</a>
+            </li>
+            <li>
+                <a href="#"
+                   class="block py-2 px-3 text-deep-sky-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0"
+                   th:text="#{section.subgrants}">Subgrants</a>
+            </li>
+            <li>
+                <a href="#"
+                   class="block py-2 px-3 text-deep-sky-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0"
+                   th:text="#{section.constructor}">Law Constructor</a>
+            </li>
+            <li>
+                <a href="#"
+                   class="block py-2 px-3 text-deep-sky-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0"
+                   th:text="#{section.informatory}">Informatory</a>
+            </li>
+        </ul>
+    </div>
+
+    <div th:fragment="tools" class="ml-6 text-deep-sky-900">
+        <i class="fa-regular fa-magnifying-glass"></i>
+    </div>
+</nav>
+
+<div th:fragment="bottom" class="w-full md:w-8/12">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+        <div>
+            <h4 th:text="#{section.about}" class="text-lg font-bold mb-4">About</h4>
+            <ul>
+                <li class="pb-4">
+                    <a th:text="#{section.about.common}"
+                       href="#">Common information</a>
+                </li>
+                <li class="pb-4">
+                    <a th:text="#{section.about.partners}"
+                       href="#">Partners</a>
+                </li>
+                <li class="pb-4">
+                    <a th:text="#{section.about.events}"
+                       href="#">Project events</a>
+                </li>
+                <li class="pb-4">
+                    <a th:text="#{section.about.monitoring}"
+                       href="#">Monitoring & evaluation</a>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <h4 th:text="#{section.education}" class="text-lg font-bold mb-4">Education</h4>
+            <ul>
+                <li class="pb-4">
+                    <a th:text="#{section.education.manuals}"
+                       href="#">Manuals</a>
+                </li>
+                <li class="pb-4">
+                    <a th:text="#{section.education.speeches}"
+                       href="#">Speeches</a>
+                </li>
+            </ul>
+            <a href="#">
+                <h4 th:text="#{section.analytics}" class="text-lg font-bold mb-4">Analytics</h4>
+            </a>
+            <a href="#">
+                <h4 th:text="#{section.subgrants}" class="text-lg font-bold mb-4">Subgrants</h4>
+            </a>
+        </div>
+        <div>
+            <h4 th:text="#{section.constructor}" class="text-lg font-bold mb-4">Law constructor</h4>
+            <ul>
+                <li class="pb-4">
+                    <a th:text="#{section.constructor.consult}"
+                       href="#">Online consultations</a>
+                </li>
+                <li class="pb-4">
+                    <a th:text="#{section.constructor.documents}"
+                       href="#">Documents</a>
+                </li>
+                <li class="pb-4">
+                    <a th:text="#{section.constructor.centers}"
+                       href="#">Public Monitoring Centers</a>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <h4 th:text="#{section.informatory}" class="text-lg font-bold mb-4">Informatory</h4>
+            <ul>
+                <li class="pb-4">
+                    <a th:text="#{section.informatory.publications}"
+                       href="#">Publication</a>
+                </li>
+                <li class="pb-4">
+                    <a th:text="#{section.informatory.presentations}"
+                       href="#">Presentations</a>
+                </li>
+                <li class="pb-4">
+                    <a th:text="#{section.informatory.links}"
+                       href="#">Links</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
