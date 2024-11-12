@@ -1,10 +1,10 @@
 package kg.biom.justice.service;
 
-import kg.biom.justice.model.AppContext;
 import kg.biom.justice.model.dto.SpeechDto;
+import org.springframework.data.domain.Page;
 
-import java.util.List;
+import java.util.Locale;
 
 public interface SpeechService {
-    List<SpeechDto> getSpeeches(int count, AppContext context);
+    Page<SpeechDto> getSpeeches(int page, int limit, Locale locale);
 }

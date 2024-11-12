@@ -9,18 +9,20 @@ import org.springframework.data.domain.PageRequest;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-class EventRepTest {
+class PosterViewRepositoryTest {
 
     @Autowired
-    private EventRep eventRep;
+    private PosterViewRepository posterViewRepository;
 
     @Value("${locale.default}")
     private String defaultLocale;
 
     @Test
-    void findAll() {
+    void findAllByLang() {
         var pageable = PageRequest.of(0, 3);
-        var result = assertDoesNotThrow(() -> eventRep.findAll(defaultLocale, pageable));
+        var result = assertDoesNotThrow(() ->
+                posterViewRepository.findAllByLang(defaultLocale, pageable));
+
         for (var entity : result) System.out.println(entity);
     }
 }

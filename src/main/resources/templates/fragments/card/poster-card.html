@@ -1,0 +1,13 @@
+<div th:fragment="posterCard(poster)">
+    <a class="block bg-white border border-gray-100 rounded-lg bg-deep-sky-50"
+       href="#">
+        <div class="p-7">
+            <img th:src="${poster.getThumb()}" th:alt="${poster.getTitle()}"/>
+        </div>
+
+        <div class="p-7">
+            <h5 class="mb-2 text-xl font-bold leading-tight text-deep-sky-900 hover:text-deep-sky-800"
+                th:text="${poster.getTitle()}">Title</h5>
+        </div>
+    </a>
+</div>

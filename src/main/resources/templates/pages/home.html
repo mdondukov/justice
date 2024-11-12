@@ -81,24 +81,13 @@
             class="uppercase text-deep-sky-900 font-bold text-5xl mb-10">Events</h2>
 
         <div class="grid grid-cols-3 gap-8">
-            <a th:each="event : ${events}"
-               href="#"
-               class="block bg-white border border-gray-100 rounded-lg">
-                <img class="rounded-t-lg" th:src="${event.getThumb()}" th:alt="${event.getTitle()}"/>
-
-                <div class="p-7">
-                    <h5 class="mb-2 text-xl font-bold leading-tight text-deep-sky-900 hover:text-deep-sky-800"
-                        th:text="${event.getTitle()}">Title</h5>
-
-                    <p class="mb-3 text-sm font-normal text-gray-400"
-                       th:text="${event.getPublishDate()}">01.01.2024</p>
-                </div>
-            </a>
+            <th:block th:each="event : ${events}"
+                      th:include="~{fragments/card/event-card :: eventCard(event)}"></th:block>
         </div>
 
         <div class="flex justify-center mt-12">
             <a class="px-12 py-4 font-normal text-center text-white bg-deep-sky-900 rounded-lg hover:bg-deep-sky-800"
-               href="#"
+               th:href="@{/events}"
                th:text="#{btn.more.events}">All events</a>
         </div>
     </section>
@@ -130,23 +119,13 @@
                 class="uppercase text-deep-sky-900 font-bold text-5xl mb-10">Speeches</h2>
 
             <div class="grid grid-cols-3 gap-8">
-                <a th:each="speeche : ${speeches}"
-                   href="#"
-                   class="block bg-white border border-gray-100 rounded-lg">
-                    <img class="rounded-t-lg" th:src="${speeche.getThumb()}" th:alt="${speeche.getTitle()}"/>
-
-                    <div class="p-7">
-                        <h5 class="mb-2 text-xl font-bold leading-tight text-deep-sky-900 hover:text-deep-sky-800"
-                            th:text="${speeche.getTitle()}">Title</h5>
-
-                        <p class="mb-3 text-sm font-normal text-gray-400" th:text="${speeche.getSpeaker()}">Speaker</p>
-                    </div>
-                </a>
+                <th:block th:each="speech : ${speeches}"
+                          th:include="~{fragments/card/speech-card.html :: speechCard(speech)}"></th:block>
             </div>
 
             <div class="flex justify-center mt-12">
                 <a class="px-12 py-4 font-normal text-center text-white bg-deep-sky-900 rounded-lg hover:bg-deep-sky-800"
-                   href="#"
+                   th:href="@{/speeches}"
                    th:text="#{btn.more.speeches}">All speeches</a>
             </div>
         </div>
@@ -156,11 +135,11 @@
     <section class="max-w-screen-xl px-4 mt-20 mx-auto" th:if="${manual != null}">
         <div class="grid grid-cols-2 gap-8">
             <div>
-                <h2 th:text="${manual.getTitle()}"
+                <h2 th:text="${manual.title}"
                     class="uppercase text-deep-sky-900 font-bold text-5xl leading-0">Title</h2>
             </div>
             <div>
-                <p th:text="${manual.getDescr()}"
+                <p th:text="${manual.descr}"
                    class="text-deep-sky-900 font-light leading-1">Descr</p>
 
                 <div class="flex justify-start items-center mt-6">
@@ -281,51 +260,27 @@
                  role="tabpanel"
                  aria-labelledby="ecology-tab">
 
-                <div class="flex justify-start"
-                     th:each="document : ${documents}"
-                     th:if="${document.activityCodes.contains(T(kg.biom.justice.model.enums.ActivityCode).ECOLOGY)}">
-                    <img th:src="@{'/img/common/' + ${document.icon} + '.svg'}"
-                         th:alt="#{btn.download.document}"
-                         class="w-[30px] h-[30px] mr-6"/>
-
-                    <a class="font-medium text-lg leading-tight text-deep-sky-900 hover:text-deep-sky-800"
-                       href="#"
-                       th:text="${document.title}">Title</a>
-                </div>
+                <th:block th:each="document : ${documents}"
+                          th:if="${document.activityCodes.contains('ecology')}"
+                          th:include="~{fragments/card/document-h-card.html :: documentHCard(document)}"></th:block>
             </div>
             <div class="hidden grid grid-cols-1 md:grid-cols-2 gap-8"
                  id="gender"
                  role="tabpanel"
                  aria-labelledby="gender-tab">
 
-                <div class="flex justify-start"
-                     th:each="document : ${documents}"
-                     th:if="${document.activityCodes.contains(T(kg.biom.justice.model.enums.ActivityCode).GENDER)}">
-                    <img th:src="@{'/img/common/' + ${document.icon} + '.svg'}"
-                         th:alt="#{btn.download.document}"
-                         class="w-[30px] h-[30px] mr-6"/>
-
-                    <a class="font-medium text-lg leading-tight text-deep-sky-900 hover:text-deep-sky-800"
-                       href="#"
-                       th:text="${document.title}">Title</a>
-                </div>
+                <th:block th:each="document : ${documents}"
+                          th:if="${document.activityCodes.contains('gender')}"
+                          th:include="~{fragments/card/document-h-card.html :: documentHCard(document)}"></th:block>
             </div>
             <div class="hidden grid grid-cols-1 md:grid-cols-2 gap-8"
                  id="privacy"
                  role="tabpanel"
                  aria-labelledby="privacy-tab">
 
-                <div class="flex justify-start"
-                     th:each="document : ${documents}"
-                     th:if="${document.activityCodes.contains(T(kg.biom.justice.model.enums.ActivityCode).PRIVACY)}">
-                    <img th:src="@{'/img/common/' + ${document.icon} + '.svg'}"
-                         th:alt="#{btn.download.document}"
-                         class="w-[30px] h-[30px] mr-6"/>
-
-                    <a class="font-medium text-lg leading-tight text-deep-sky-900 hover:text-deep-sky-800"
-                       href="#"
-                       th:text="${document.title}">Title</a>
-                </div>
+                <th:block th:each="document : ${documents}"
+                          th:if="${document.activityCodes.contains('privacy')}"
+                          th:include="~{fragments/card/document-h-card.html :: documentHCard(document)}"></th:block>
             </div>
         </div>
 
@@ -341,21 +296,10 @@
         <div class="max-w-screen-xl px-4 py-20 mx-auto">
             <h2 th:text="#{section.analytics}"
                 class="uppercase text-white font-bold text-5xl mb-10">Analytics</h2>
-            <div class="grid grid-cols-3 gap-8">
-                <a th:each="analytic : ${analytics}"
-                   href="#"
-                   class="block bg-white border border-gray-100 rounded-lg h-full flex flex-col justify-between p-7">
-                    <div class="flex items-start mb-8">
-                        <img th:src="@{'/img/common/' + ${analytic.getIcon()} + '.svg'}"
-                             th:alt="#{btn.download.document}"
-                             class="w-[30px] h-[30px]"/>
-                    </div>
 
-                    <h5 class="mt-auto text-xl font-medium leading-tight text-deep-sky-900 hover:text-deep-sky-800"
-                        th:text="${analytic.getTitle()}">
-                        Title
-                    </h5>
-                </a>
+            <div class="grid grid-cols-3 gap-8">
+                <th:block th:each="document : ${analytics}"
+                          th:include="~{fragments/card/document-card.html :: documentCard(document)}"></th:block>
             </div>
         </div>
     </section>
@@ -366,23 +310,13 @@
             class="uppercase text-deep-sky-900 font-bold text-5xl mb-10">Posters</h2>
 
         <div class="grid grid-cols-3 gap-8">
-            <a th:each="poster : ${posters}"
-               href="#"
-               class="block bg-white border border-gray-100 rounded-lg bg-deep-sky-50">
-                <div class="p-7">
-                    <img th:src="${poster.getThumb()}" th:alt="${poster.getTitle()}"/>
-                </div>
-
-                <div class="p-7">
-                    <h5 class="mb-2 text-xl font-bold leading-tight text-deep-sky-900 hover:text-deep-sky-800"
-                        th:text="${poster.getTitle()}">Title</h5>
-                </div>
-            </a>
+            <th:block th:each="poster : ${posters}"
+                      th:include="~{fragments/card/poster-card.html :: posterCard(poster)}"></th:block>
         </div>
 
         <div class="flex justify-center mt-12">
             <a class="px-12 py-4 font-normal text-center text-white bg-deep-sky-900 rounded-lg hover:bg-deep-sky-800"
-               href="#"
+               th:href="@{/posters}"
                th:text="#{btn.more.posters}">All posters</a>
         </div>
     </section>

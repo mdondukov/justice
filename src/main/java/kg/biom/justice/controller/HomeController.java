@@ -1,6 +1,5 @@
 package kg.biom.justice.controller;
 
-import kg.biom.justice.model.AppContext;
 import kg.biom.justice.model.enums.DocumentType;
 import kg.biom.justice.service.DocumentService;
 import kg.biom.justice.service.EventService;
@@ -22,24 +21,20 @@ public class HomeController {
     private final PosterService posterService;
     private final DocumentService documentService;
 
-    @Value("${locale.default}")
-    private String defaultLocale;
+    @Value("${content.home.limit.default}")
+    private int defaultLimit;
 
-    @Value("${user.default}")
-    private String defaultUser;
-
-    @Value("${content.items.count}")
-    private int itemsCount;
+    @Value("${content.home.limit.documents}")
+    private int documentsLimit;
 
     @GetMapping("/")
     public String home(Model model, Locale locale) {
-        var context = new AppContext(defaultUser, defaultLocale);
-        model.addAttribute("events", eventService.getEvents(itemsCount, context));
-        model.addAttribute("speeches", speechService.getSpeeches(itemsCount, context));
-        documentService.getDocument(1L, context).ifPresent(manual -> model.addAttribute("manual", manual));
-        model.addAttribute("documents", documentService.getDocuments(DocumentType.LEGAL_DOCUMENT, 24, context));
-        model.addAttribute("analytics", documentService.getDocuments(DocumentType.ANALYTICS, itemsCount, context));
-        model.addAttribute("posters", posterService.getPosters(itemsCount, context));
+        model.addAttribute("events", eventService.getEvents(0, defaultLimit, locale).getContent());
+        model.addAttribute("speeches", speechService.getSpeeches(0, defaultLimit, locale).getContent());
+        documentService.getDocument(1L, locale).ifPresent(manual -> model.addAttribute("manual", manual));
+        model.addAttribute("documents", documentService.getDocuments(DocumentType.LEGAL_DOCUMENT, documentsLimit, locale));
+        model.addAttribute("analytics", documentService.getDocuments(DocumentType.ANALYTICS, defaultLimit, locale));
+        model.addAttribute("posters", posterService.getPosters(0, defaultLimit, locale).getContent());
         return "pages/home";
     }
 }

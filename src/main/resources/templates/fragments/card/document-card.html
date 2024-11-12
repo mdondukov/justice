@@ -1,0 +1,15 @@
+<div th:fragment="documentCard(document)">
+    <a class="block bg-white border border-gray-100 rounded-lg h-full flex flex-col justify-between p-7"
+       href="#">
+        <div class="flex items-start mb-8">
+            <img th:src="@{'/img/common/' + ${document.getIcon()} + '.svg'}"
+                 th:alt="#{btn.download.document}"
+                 class="w-[30px] h-[30px]"/>
+        </div>
+
+        <h5 class="mt-auto text-xl font-medium leading-tight text-deep-sky-900 hover:text-deep-sky-800"
+            th:text="${document.getTitle()}">
+            Title
+        </h5>
+    </a>
+</div>

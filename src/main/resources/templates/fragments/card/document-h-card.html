@@ -1,0 +1,11 @@
+<div th:fragment="documentHCard(document)">
+    <div class="flex justify-start">
+        <img th:src="@{'/img/common/' + ${document.icon} + '.svg'}"
+             th:alt="#{btn.download.document}"
+             class="w-[30px] h-[30px] mr-6"/>
+
+        <a class="font-medium text-lg leading-tight text-deep-sky-900 hover:text-deep-sky-800"
+           href="#"
+           th:text="${document.title}">Title</a>
+    </div>
+</div>

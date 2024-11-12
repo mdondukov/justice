@@ -1,0 +1,14 @@
+<div th:fragment="eventCard(event)">
+    <a class="block bg-white border border-gray-100 rounded-lg"
+       href="#">
+        <img class="rounded-t-lg" th:src="${event.getThumb()}" th:alt="${event.getTitle()}"/>
+
+        <div class="p-7">
+            <h5 class="mb-2 text-xl font-bold leading-tight text-deep-sky-900 hover:text-deep-sky-800"
+                th:text="${event.getTitle()}">Title</h5>
+
+            <p class="mb-3 text-sm font-normal text-gray-400"
+               th:text="${event.getPublishDate()}">01.01.2024</p>
+        </div>
+    </a>
+</div>

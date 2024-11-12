@@ -16,8 +16,8 @@ public class EventDto {
     private String descr;
     private String content;
     private String thumb;
-    private AttachFile agenda;
-    private AttachFile press;
+    private List<AttachFile> agenda;
+    private List<AttachFile> press;
     private List<String> pictures;
     private String youtubeUrl;
     private String publishDate;

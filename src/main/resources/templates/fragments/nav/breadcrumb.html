@@ -1,0 +1,28 @@
+<nav th:fragment="breadcrumbList(breadcrumbs)" class="flex mt-6">
+  <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+    <li class="inline-flex items-center">
+      <a class="text-sm text-deep-sky-900 hover:text-deep-sky-800"
+         th:text="#{home}"
+         th:href="@{/}">Home</a>
+    </li>
+
+    <li th:each="breadcrumb : ${breadcrumbs}">
+      <div class="flex items-center">
+        <svg class="rtl:rotate-180 w-3 h-3 text-deep-sky-900 mx-1" aria-hidden="true"
+             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="1" d="m1 9 4-4-4-4"/>
+        </svg>
+
+        <a class="ms-1 text-sm text-deep-sky-900 hover:text-deep-sky-800 md:ms-2"
+           th:if="${breadcrumb.uri != null}"
+           th:href="${breadcrumb.uri}"
+           th:text="${breadcrumb.title}">Title</a>
+
+        <span class="ms-1 text-sm text-gray-400 md:ms-2"
+              th:if="${breadcrumb.uri == null}"
+              th:text="${breadcrumb.title}">Title</span>
+      </div>
+    </li>
+  </ol>
+</nav>

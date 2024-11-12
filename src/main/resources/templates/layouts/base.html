@@ -16,9 +16,9 @@
     <script src="https://kit.fontawesome.com/498949fb43.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<header th:replace="~{fragments/header.html}"></header>
+<header th:replace="~{fragments/header}"></header>
 <main th:replace="${content}"></main>
-<footer th:replace="~{fragments/footer.html}"></footer>
+<footer th:replace="~{fragments/footer}"></footer>
 
 <th:block th:replace="${scripts}" />
 </body>

@@ -1,6 +1,5 @@
 package kg.biom.justice.model.dto;
 
-import kg.biom.justice.model.enums.ActivityCode;
 import kg.biom.justice.model.enums.DocumentType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,7 +15,7 @@ public class DocumentDto {
     private String title;
     private String descr;
     private DocumentType type;
-    private List<ActivityCode> activityCodes;
+    private List<String> activityCodes;
     private List<AttachFile> files;
     private String icon;
     private int ord;

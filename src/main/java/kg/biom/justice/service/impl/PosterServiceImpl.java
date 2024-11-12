@@ -1,38 +1,51 @@
 package kg.biom.justice.service.impl;
 
-import kg.biom.justice.model.AppContext;
+import kg.biom.justice.model.ContentUtil;
 import kg.biom.justice.model.dto.PosterDto;
+import kg.biom.justice.model.entity.PosterViewEntity;
+import kg.biom.justice.repository.PosterRepository;
+import kg.biom.justice.repository.PosterViewRepository;
 import kg.biom.justice.service.PosterService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 @Service
+@RequiredArgsConstructor
 public class PosterServiceImpl implements PosterService {
+    private final PosterViewRepository posterViewRepository;
+    private final PosterRepository posterRepository;
 
     @Value("${content.base.path}")
     private String basePath;
 
     @Override
-    public List<PosterDto> getPosters(int count, AppContext context) {
-        return List.of(
-                new PosterDto(3L,
-                        "eco-public-participation",
-                        "Как я могу вовлекаться в принятие значимых экологических решений?",
-                        String.format("%s/posters/img/5201076d-9f0d-4016-847f-05d2ef046a90.jpg", basePath),
-                        Collections.emptyList()),
-                new PosterDto(2L,
-                        "public-law-process",
-                        "Участие гражданского общества в законотворческом процессе, а также в оценке системы защиты прав человека",
-                        String.format("%s/posters/img/b2d29749-9d36-44cc-909b-baa6de1a6c9f.jpg", basePath),
-                        Collections.emptyList()),
-                new PosterDto(1L,
-                        "private-data-safety",
-                        "Карта защиты персональных данных",
-                        String.format("%s/posters/img/e955a40d-e878-4b0c-b5ae-14ae8cfac2b6.jpg", basePath),
-                        Collections.emptyList())
-        );
+    public Page<PosterDto> getPosters(int page, int limit, Locale locale) {
+        Pageable pageable = PageRequest.of(page, limit, Sort.by(Sort.Direction.DESC, "createDate"));
+        return posterViewRepository.findAllByLang(locale.getLanguage(), pageable).map(this::convertToDto);
+    }
+
+    private PosterDto convertToDto(PosterViewEntity entity) {
+        PosterDto poster = new PosterDto();
+        poster.setId(entity.getId());
+        poster.setSlug(entity.getSlug());
+        poster.setTitle(entity.getTitle());
+        poster.setDescr(entity.getDescr());
+        poster.setThumb(ContentUtil.mergePath(basePath, entity.getThumbnail()));
+
+        if (entity.getFiles() != null)
+            poster.setFiles(entity.getFiles().stream().map(f -> ContentUtil.handleAttachFile(f, basePath)).toList());
+
+        List<String> activityCodes = posterRepository.findActivitySlugsByPosterId(poster.getId());
+        poster.setActivityCodes(activityCodes);
+
+        return poster;
     }
 }

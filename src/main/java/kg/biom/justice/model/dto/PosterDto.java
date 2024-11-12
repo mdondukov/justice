@@ -13,6 +13,8 @@ public class PosterDto {
     private Long id;
     private String slug;
     private String title;
+    private String descr;
     private String thumb;
     private List<AttachFile> files;
+    private List<String> activityCodes;
 }

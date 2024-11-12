@@ -1,131 +1,72 @@
 package kg.biom.justice.service.impl;
 
-import kg.biom.justice.model.AppContext;
+import kg.biom.justice.model.dto.AttachFile;
 import kg.biom.justice.model.dto.DocumentDto;
-import kg.biom.justice.model.enums.ActivityCode;
+import kg.biom.justice.model.entity.DocumentViewEntity;
+import kg.biom.justice.model.enums.AttachFileType;
 import kg.biom.justice.model.enums.DocumentType;
+import kg.biom.justice.repository.DocumentRepository;
+import kg.biom.justice.repository.DocumentViewRepository;
 import kg.biom.justice.service.DocumentService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
+@RequiredArgsConstructor
 public class DocumentServiceImpl implements DocumentService {
+    private final DocumentViewRepository documentViewRepository;
+    private final DocumentRepository documentRepository;
+
+    @Value("${content.base.path}")
+    private String basePath;
+
     @Override
-    public List<DocumentDto> getDocuments(DocumentType type, int limit, AppContext context) {
-        return getDocuments().stream()
-                .filter(document -> document.getType().equals(type))
-                .limit(limit)
+    public List<DocumentDto> getDocuments(DocumentType type, int limit, Locale locale) {
+        Pageable pageable = PageRequest.of(0, limit, Sort.by(Sort.Direction.DESC, "ord"));
+        return documentViewRepository.findAllByTypeAndLang(type, locale.getLanguage(), pageable).stream()
+                .map(this::convertToDto)
                 .toList();
     }
 
     @Override
-    public Optional<DocumentDto> getDocument(Long id, AppContext context) {
-        return getDocuments().stream()
-                .filter(document -> document.getId().equals(id))
-                .findFirst();
+    public Optional<DocumentDto> getDocument(Long id, Locale locale) {
+        return documentViewRepository.findByIdAndLang(id, locale.getLanguage())
+                .map(this::convertToDto);
     }
 
-    private List<DocumentDto> getDocuments() {
-        return List.of(
-                new DocumentDto(1L,
-                        "Руководство по общественному мониторингу",
-                        "Публикация “Руководство по общественному мониторингу Целей Устойчивого Развития и социально-экологической поддержке населения” посвящена описанию процесса проведения мониторинга с участием граждан в сборе данных, а также механизмов взаимодействия по проведению мониторинга между гражданами, органами государственной власти и местного самоуправления.",
-                        DocumentType.MANUAL,
-                        Collections.emptyList(),
-                        Collections.emptyList(),
-                        "file-pdf",
-                        1),
-                new DocumentDto(2L,
-                        "Аналитический отчет о механизмах защиты персональных данных и неприкосновенности частной жизни в КР",
-                        "",
-                        DocumentType.ANALYTICS,
-                        List.of(ActivityCode.PRIVACY),
-                        Collections.emptyList(),
-                        "file-pdf",
-                        1),
-                new DocumentDto(3L,
-                        "Аналитический отчет о механизмах обеспечения экологических прав в КР",
-                        "",
-                        DocumentType.ANALYTICS,
-                        List.of(ActivityCode.ECOLOGY),
-                        Collections.emptyList(),
-                        "file-pdf",
-                        2),
-                new DocumentDto(4L,
-                        "Аналитический отчет о механизмах защиты и продвижения гендерного равенства в КР",
-                        "",
-                        DocumentType.ANALYTICS,
-                        List.of(ActivityCode.GENDER),
-                        Collections.emptyList(),
-                        "file-pdf",
-                        3),
-                new DocumentDto(5L,
-                        "Анализ законодательства  Кыргызской Республики в области обращения химических веществ и отходов",
-                        "",
-                        DocumentType.LEGAL_DOCUMENT,
-                        List.of(ActivityCode.ECOLOGY),
-                        Collections.emptyList(),
-                        "file-pdf",
-                        1),
-                new DocumentDto(6L,
-                        "Биоразнообразие и изменение климата. Проект решения, представленный Председателем Рабочей группы II",
-                        "",
-                        DocumentType.LEGAL_DOCUMENT,
-                        List.of(ActivityCode.ECOLOGY),
-                        Collections.emptyList(),
-                        "file-pdf",
-                        2),
-                new DocumentDto(7L,
-                        "Выполнение Кыргызстаном обязательств, вытекающих из Конвенции по биоразнообразию",
-                        "",
-                        DocumentType.LEGAL_DOCUMENT,
-                        List.of(ActivityCode.ECOLOGY),
-                        Collections.emptyList(),
-                        "file-word",
-                        3),
-                new DocumentDto(8L,
-                        "Каталог проектных идей по “Зеленой экономике” Кыргызстана",
-                        "",
-                        DocumentType.LEGAL_DOCUMENT,
-                        List.of(ActivityCode.ECOLOGY),
-                        Collections.emptyList(),
-                        "file-pdf",
-                        4),
-                new DocumentDto(9L,
-                        "Международные экологические конвенции, стороной которых является Кыргызская Республика",
-                        "",
-                        DocumentType.LEGAL_DOCUMENT,
-                        List.of(ActivityCode.ECOLOGY),
-                        Collections.emptyList(),
-                        "file-word",
-                        5),
-                new DocumentDto(10L,
-                        "Отчет о ходе достижения Целей Устойчивого Развития в Кыргызской Республике",
-                        "",
-                        DocumentType.LEGAL_DOCUMENT,
-                        List.of(ActivityCode.ECOLOGY),
-                        Collections.emptyList(),
-                        "file-pdf",
-                        6),
-                new DocumentDto(11L,
-                        "Обращение НПО стран Центральной Азии по вопросам изменения климата",
-                        "",
-                        DocumentType.LEGAL_DOCUMENT,
-                        List.of(ActivityCode.ECOLOGY),
-                        Collections.emptyList(),
-                        "file-word",
-                        7),
-                new DocumentDto(12L,
-                        "Международные обязательства Кыргызской Республики в области охраны окружающей среды",
-                        "",
-                        DocumentType.LEGAL_DOCUMENT,
-                        List.of(ActivityCode.ECOLOGY),
-                        Collections.emptyList(),
-                        "file-pdf",
-                        8)
-        );
+    private DocumentDto convertToDto(DocumentViewEntity entity) {
+        DocumentDto document = new DocumentDto();
+        document.setId(entity.getId());
+        document.setTitle(entity.getTitle());
+        document.setDescr(entity.getDescr());
+        document.setType(entity.getType());
+
+        List<String> activityCodes = documentRepository.findActivitySlugsByDocumentId(entity.getId());
+        document.setActivityCodes(activityCodes);
+
+        if (entity.getFiles() == null) return document;
+
+        Map<AttachFileType, Long> typeCounts = new HashMap<>();
+        List<AttachFile> files = entity.getFiles().stream()
+                .peek(file -> {
+                    file.setPath(String.format("%s%s", basePath, file.getPath()));
+                    typeCounts.merge(file.getType(), 1L, Long::sum);
+                })
+                .toList();
+        document.setFiles(files);
+
+        typeCounts.entrySet().stream()
+                .max(Comparator.comparingLong(Map.Entry::getValue))
+                .map(Map.Entry::getKey)
+                .ifPresentOrElse(type -> document.setIcon(type.getIcon()),
+                        () -> document.setIcon(AttachFileType.OTHER.getIcon()));
+
+        return document;
     }
 }

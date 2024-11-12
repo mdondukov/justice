@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ru" th:replace="~{layouts/base.html :: base(~{::title}, ~{::main}, _, _)}">
+<head>
+    <title th:text="#{section.education.posters} + ' | MJ'">Title</title>
+</head>
+<body>
+<main>
+    <div th:replace="~{fragments/section-head :: base(#{section.education.posters}, ${breadcrumbs})}"></div>
+
+    <section class="max-w-screen-xl px-4 mt-12 mx-auto">
+        <div class="grid grid-cols-3 gap-8">
+            <th:block th:each="poster : ${postersPage.content}"
+                      th:include="~{fragments/card/poster-card :: posterCard(poster)}"></th:block>
+        </div>
+
+        <div th:replace="~{fragments/nav/pagination :: pagination(${currentPage}, ${postersPage.getTotalPages()}, '/posters')}"></div>
+    </section>
+</main>
+</body>
+</html>
