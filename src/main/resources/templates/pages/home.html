@@ -144,8 +144,9 @@
 
                 <div class="flex justify-start items-center mt-6">
                     <a class="font-medium text-deep-sky-900 hover:text-deep-sky-800"
-                       href="#"
-                       th:text="#{btn.download.publication}">Download</a>
+                       th:href="${manual.files.?[lang == #locale.language][0]?.path ?: '#'}"
+                       th:text="#{btn.download.publication}"
+                       target="_blank">Download</a>
 
                     <img class="ml-4" th:src="@{/img/common/down.svg}" th:alt="#{btn.download.publication}"/>
                 </div>

@@ -28,7 +28,7 @@ public class DocumentServiceImpl implements DocumentService {
 
     @Override
     public List<DocumentDto> getDocuments(DocumentType type, int limit, Locale locale) {
-        Pageable pageable = PageRequest.of(0, limit, Sort.by(Sort.Direction.DESC, "ord"));
+        Pageable pageable = PageRequest.of(0, limit, Sort.by(Sort.Direction.ASC, "ord"));
         return documentViewRepository.findAllByTypeAndLang(type, locale.getLanguage(), pageable).stream()
                 .map(this::convertToDto)
                 .toList();

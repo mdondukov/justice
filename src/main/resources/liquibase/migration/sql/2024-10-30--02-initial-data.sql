@@ -80,7 +80,7 @@ $$
         VALUES ('ANALYTICS', '[
           {
             "type": "PDF",
-            "path": "/files/analytic_report_privacy.pdf",
+            "path": "/files/annex5_analytical_report_privacy.pdf",
             "lang": "ru"
           }
         ]', true, 1)
@@ -89,7 +89,7 @@ $$
         INSERT INTO just.document_lang (document_id, lang, title, descr)
         VALUES (doc_id, 'ru',
                 'Аналитический отчет о механизмах защиты персональных данных и неприкосновенности частной жизни в КР',
-                '');
+                'Данный Аналитический отчет раскрывает особенности и проблемы правового регулирования и формирования системы защиты персональных данных и неприкосновенности частной жизни в Кыргызской Республике. В исследовании рассматриваются вопросы законодательного регулирования в сферах защиты персональных данных и неприкосновенности частной жизни. Отчет подготовлен на основе анализа международных документов, участницей которых является Кыргызская Республика, а также обзора судебной практики в сфере защиты частной жизни.');
 
         INSERT INTO just.document_activity (document_id, activity_id)
         VALUES (doc_id, (SELECT id FROM just.activity WHERE slug = 'privacy'));
@@ -99,14 +99,16 @@ $$
         VALUES ('ANALYTICS', '[
           {
             "type": "PDF",
-            "path": "/files/analytic_report_eco.pdf",
+            "path": "/files/annex7_analytical_report_eco.pdf",
             "lang": "ru"
           }
         ]', true, 2)
         RETURNING id INTO doc_id;
 
         INSERT INTO just.document_lang (document_id, lang, title, descr)
-        VALUES (doc_id, 'ru', 'Аналитический отчет о механизмах обеспечения экологических прав в КР', '');
+        VALUES (doc_id, 'ru',
+                'Аналитический отчет о механизмах обеспечения экологических прав в КР',
+                'Данный Аналитический отчет рассматривает механизмы защиты экологических прав в Кыргызской Республике, способствует повышению осведомленности и восприятию экологических проблем с точки зрения регулирования вопросов реализации экологических прав в соответствии с международными документами и национальным законодательством. В аналитическом отчете также даны рекомендации по внедрению конкретных мер по вовлечению представителей гражданского общества к участию в принятии экологически значимых решений, улучшению доступа к информации и регулированию экологических прав в Кыргызской Республике.');
 
         INSERT INTO just.document_activity (document_id, activity_id)
         VALUES (doc_id, (SELECT id FROM just.activity WHERE slug = 'ecology'));
@@ -116,14 +118,16 @@ $$
         VALUES ('ANALYTICS', '[
           {
             "type": "PDF",
-            "path": "/files/analytic_report_gender.pdf",
+            "path": "/files/annex3_analytical_report_gender.pdf",
             "lang": "ru"
           }
         ]', true, 3)
         RETURNING id INTO doc_id;
 
         INSERT INTO just.document_lang (document_id, lang, title, descr)
-        VALUES (doc_id, 'ru', 'Аналитический отчет о механизмах защиты и продвижения гендерного равенства в КР', '');
+        VALUES (doc_id, 'ru',
+                'Аналитический отчет о механизмах защиты и продвижения гендерного равенства в КР',
+                'Данный Аналитический отчет рассматривает механизмы защиты и продвижения гендерного равенства в Кыргызской Республике, способствует повышению осведомленности и восприятию социальных проблем с точки зрения гендерного равенства, разработке эффективных стратегий, направленных на предотвращение насилия в отношении женщин и защиту их прав.');
 
         INSERT INTO just.document_activity (document_id, activity_id)
         VALUES (doc_id, (SELECT id FROM just.activity WHERE slug = 'gender'));
@@ -141,7 +145,8 @@ $$
 
         INSERT INTO just.document_lang (document_id, lang, title, descr)
         VALUES (doc_id, 'ru',
-                'Анализ законодательства Кыргызской Республики в области обращения химических веществ и отходов', '');
+                'Анализ законодательства Кыргызской Республики в области обращения химических веществ и отходов',
+                'Целью исследования является проведение анализа законодательства КР, направленного на выявление имеющихся возможностей и потребностей по обеспечению химической безопасности в соответствии с положениями международных соглашений в данной области.');
 
         INSERT INTO just.document_activity (document_id, activity_id)
         VALUES (doc_id, (SELECT id FROM just.activity WHERE slug = 'ecology'));
@@ -177,7 +182,9 @@ $$
         RETURNING id INTO doc_id;
 
         INSERT INTO just.document_lang (document_id, lang, title, descr)
-        VALUES (doc_id, 'ru', 'Выполнение Кыргызстаном обязательств, вытекающих из Конвенции по биоразнообразию', '');
+        VALUES (doc_id, 'ru',
+                'Выполнение Кыргызстаном обязательств, вытекающих из Конвенции по биоразнообразию',
+                '');
 
         INSERT INTO just.document_activity (document_id, activity_id)
         VALUES (doc_id, (SELECT id FROM just.activity WHERE slug = 'ecology'));
@@ -194,7 +201,9 @@ $$
         RETURNING id INTO doc_id;
 
         INSERT INTO just.document_lang (document_id, lang, title, descr)
-        VALUES (doc_id, 'ru', 'Каталог проектных идей по “Зеленой экономике” Кыргызстана', '');
+        VALUES (doc_id, 'ru',
+                'Каталог проектных идей по “Зеленой экономике” Кыргызстана',
+                'Каталог проектных идей в сфере «зеленой экономики» был создан на базе заявок полученных в рамках Конкурса на лучшие концепции проектных предложений в области адаптации к изменению климата, продвижения зеленой экономики и cохранения биоразнообразия.');
 
         INSERT INTO just.document_activity (document_id, activity_id)
         VALUES (doc_id, (SELECT id FROM just.activity WHERE slug = 'ecology'));
@@ -204,14 +213,15 @@ $$
         VALUES ('LEGAL_DOCUMENT', '[
           {
             "type": "WORD",
-            "path": "/files/iter_eco_conventions.docx",
+            "path": "/files/iter_eco_conventions.doc",
             "lang": "ru"
           }
         ]', true, 5)
         RETURNING id INTO doc_id;
 
         INSERT INTO just.document_lang (document_id, lang, title, descr)
-        VALUES (doc_id, 'ru', 'Международные экологические конвенции, стороной которых является Кыргызская Республика',
+        VALUES (doc_id, 'ru',
+                'Международные экологические конвенции, стороной которых является Кыргызская Республика',
                 '');
 
         INSERT INTO just.document_activity (document_id, activity_id)
@@ -229,7 +239,9 @@ $$
         RETURNING id INTO doc_id;
 
         INSERT INTO just.document_lang (document_id, lang, title, descr)
-        VALUES (doc_id, 'ru', 'Отчет о ходе достижения Целей Устойчивого Развития в Кыргызской Республике', '');
+        VALUES (doc_id, 'ru',
+                'Отчет о ходе достижения Целей Устойчивого Развития в Кыргызской Республике',
+                'Настоящий отчет представляет собой совместную работу специалистов системы ООН, направленную на интеграцию вопросов Повестки в области устойчивого развития на период до 2030 года и достижения Целей устойчивого развития (ЦУР) в контексте развития Кыргызстана. Отчет явился результатом нескольких исследований, проведенных до и после недельной миссии MAPS по интеграции, ускрению и поддержке политики в Бишкеке, проведенной в период с 25 по 30 июня 2018 года. Необходимо подчеркнуть роль и участие членов Правительства, экспертов, представителей частного сектора и гражданского общества, которые открыто и активно участвовали в мероприятиях в рамках миссии.');
 
         INSERT INTO just.document_activity (document_id, activity_id)
         VALUES (doc_id, (SELECT id FROM just.activity WHERE slug = 'ecology'));
@@ -239,14 +251,16 @@ $$
         VALUES ('LEGAL_DOCUMENT', '[
           {
             "type": "WORD",
-            "path": "/files/climate_chane_ca_request.docx",
+            "path": "/files/climate_change_ca_request.docx",
             "lang": "ru"
           }
         ]', true, 7)
         RETURNING id INTO doc_id;
 
         INSERT INTO just.document_lang (document_id, lang, title, descr)
-        VALUES (doc_id, 'ru', 'Обращение НПО стран Центральной Азии по вопросам изменения климата', '');
+        VALUES (doc_id, 'ru',
+                'Обращение НПО стран Центральной Азии по вопросам изменения климата',
+                'Страны Центральной Азии относятся к группе стран наиболее уязвимых от изменения климата. Катастрофа Аральского моря стала наглядным примером неустойчивого развития нашего региона. При этом климатические изменения все заметнее влияют на жизнь десятков миллионов людей, особенно в сельской̆ местности. Дальнейшая деградация экосистем, растущий дефицит водных ресурсов, участившиеся засухи и другие природные опасные явления, усилившийся процесс опустынивания, сокращение урожайности и природные опасные явления требуют принятия срочных мер.');
 
         INSERT INTO just.document_activity (document_id, activity_id)
         VALUES (doc_id, (SELECT id FROM just.activity WHERE slug = 'ecology'));
@@ -263,7 +277,219 @@ $$
         RETURNING id INTO doc_id;
 
         INSERT INTO just.document_lang (document_id, lang, title, descr)
-        VALUES (doc_id, 'ru', 'Международные обязательства Кыргызской Республики в области охраны окружающей среды',
+        VALUES (doc_id, 'ru',
+                'Международные обязательства Кыргызской Республики в области охраны окружающей среды',
+                'В данную публикацию вошли официальные переводы актов международного права в области охраны окружающей среды, стороной которых является Кыргызская Республика. Настоящая публикация готовилась для целей подготовки и повышения квалификации судей, студентов юридических факультетов высших учебных заведений, активистов вовлеченных в деятельность по обеспечению реализации права граждан на благоприятную для жизни и здоровья окружающую среду.');
+
+        INSERT INTO just.document_activity (document_id, activity_id)
+        VALUES (doc_id, (SELECT id FROM just.activity WHERE slug = 'ecology'));
+
+        -- Документ 13
+        INSERT INTO just.document (dtype, files, active, ord)
+        VALUES ('LEGAL_DOCUMENT', '[
+          {
+            "type": "WORD",
+            "path": "/files/law_climate.doc",
+            "lang": "ru"
+          }
+        ]', true, 9)
+        RETURNING id INTO doc_id;
+
+        INSERT INTO just.document_lang (document_id, lang, title, descr)
+        VALUES (doc_id, 'ru',
+                'Законодательство Кыргызской Республики в области изменения климата',
+                '');
+
+        INSERT INTO just.document_activity (document_id, activity_id)
+        VALUES (doc_id, (SELECT id FROM just.activity WHERE slug = 'ecology'));
+
+        -- Документ 14
+        INSERT INTO just.document (dtype, files, active, ord)
+        VALUES ('LEGAL_DOCUMENT', '[
+          {
+            "type": "PDF",
+            "path": "/files/climate_change_evaluation.pdf",
+            "lang": "ru"
+          }
+        ]', true, 10)
+        RETURNING id INTO doc_id;
+
+        INSERT INTO just.document_lang (document_id, lang, title, descr)
+        VALUES (doc_id, 'ru',
+                'Оценка изменения климата в Кыргызской Республике',
+                'В данной работе проведен пространственный и временной анализ изменения основных метеорологических параметров, таких как температура воздуха и атмосферные осадки, а также оценка изменения климатических индексов, оказывающих влияние на сектор сельского хозяйства. Поведена оценка засухи и динамика ее изменения на основе Стандартизованного индекса осадков и Стандартизованного индекса осадков и эвапотранспирации. Для анализа изменения климата в будущем использовались расчеты моделей общей циркуляции атмосферы и океана (МОЦАО) международного проекта CMIP6 (Проект взаимного сравнения объединённых моделей. Фаза 6).');
+
+        INSERT INTO just.document_activity (document_id, activity_id)
+        VALUES (doc_id, (SELECT id FROM just.activity WHERE slug = 'ecology'));
+
+        -- Документ 15
+        INSERT INTO just.document (dtype, files, active, ord)
+        VALUES ('LEGAL_DOCUMENT', '[
+          {
+            "type": "PDF",
+            "path": "/files/climate_investment_program.pdf",
+            "lang": "ru"
+          }
+        ]', true, 11)
+        RETURNING id INTO doc_id;
+
+        INSERT INTO just.document_lang (document_id, lang, title, descr)
+        VALUES (doc_id, 'ru',
+                'Климатическая инвестиционная программа',
+                'Операционные рамки управления и доступа к климатическому финансированию в Кыргызской Республике');
+
+        INSERT INTO just.document_activity (document_id, activity_id)
+        VALUES (doc_id, (SELECT id FROM just.activity WHERE slug = 'ecology'));
+
+        -- Документ 16
+        INSERT INTO just.document (dtype, files, active, ord)
+        VALUES ('LEGAL_DOCUMENT', '[
+          {
+            "type": "PDF",
+            "path": "/files/climate_facts_and_policy.pdf",
+            "lang": "ru"
+          }
+        ]', true, 12)
+        RETURNING id INTO doc_id;
+
+        INSERT INTO just.document_lang (document_id, lang, title, descr)
+        VALUES (doc_id, 'ru',
+                'Кыргызстан. Климат: факты и политика',
+                '');
+
+        INSERT INTO just.document_activity (document_id, activity_id)
+        VALUES (doc_id, (SELECT id FROM just.activity WHERE slug = 'ecology'));
+
+        -- Документ 17
+        INSERT INTO just.document (dtype, files, active, ord)
+        VALUES ('LEGAL_DOCUMENT', '[
+          {
+            "type": "WORD",
+            "path": "/files/biodiversity_convention.doc",
+            "lang": "ru"
+          }
+        ]', true, 13)
+        RETURNING id INTO doc_id;
+
+        INSERT INTO just.document_lang (document_id, lang, title, descr)
+        VALUES (doc_id, 'ru',
+                'Конвенция о биологическом разнообразии',
+                '');
+
+        INSERT INTO just.document_activity (document_id, activity_id)
+        VALUES (doc_id, (SELECT id FROM just.activity WHERE slug = 'ecology'));
+
+        -- Документ 18
+        INSERT INTO just.document (dtype, files, active, ord)
+        VALUES ('LEGAL_DOCUMENT', '[
+          {
+            "type": "WORD",
+            "path": "/files/eco_conventions_role.doc",
+            "lang": "ru"
+          }
+        ]', true, 14)
+        RETURNING id INTO doc_id;
+
+        INSERT INTO just.document_lang (document_id, lang, title, descr)
+        VALUES (doc_id, 'ru', 'Экологические конвенции в КР: роль и принципы функционирования',
+                '');
+
+        INSERT INTO just.document_activity (document_id, activity_id)
+        VALUES (doc_id, (SELECT id FROM just.activity WHERE slug = 'ecology'));
+
+        -- Документ 19
+        INSERT INTO just.document (dtype, files, active, ord)
+        VALUES ('LEGAL_DOCUMENT', '[
+          {
+            "type": "PDF",
+            "path": "/files/centralasia_ru.pdf",
+            "lang": "ru"
+          }
+        ]', true, 15)
+        RETURNING id INTO doc_id;
+
+        INSERT INTO just.document_lang (document_id, lang, title, descr)
+        VALUES (doc_id, 'ru',
+                'Адаптация к изменению климата в горных районах Центральной Азии',
+                'Настоящий доклад был подготовлен Программой Организации Объединенных Наций по окружающей среде (ООН–окружающая среда) в рамках межрегионального проекта «Действия по предотвращению изменения климата в развивающихся странах с уязвимыми горными экосистемами в (суб)региональной перспективе», при совместном финансировании со стороны Австрийского Федерального министерства сельского, лесного, водного хозяйства и охраны окружающей среды (BMLFUW).');
+
+        INSERT INTO just.document_activity (document_id, activity_id)
+        VALUES (doc_id, (SELECT id FROM just.activity WHERE slug = 'ecology'));
+
+        -- Документ 20
+        INSERT INTO just.document (dtype, files, active, ord)
+        VALUES ('LEGAL_DOCUMENT', '[
+          {
+            "type": "WORD",
+            "path": "/files/legislation_analysis_iee.doc",
+            "lang": "ru"
+          }
+        ]', true, 16)
+        RETURNING id INTO doc_id;
+
+        INSERT INTO just.document_lang (document_id, lang, title, descr)
+        VALUES (doc_id, 'ru',
+                'Обзор национального законодательства и международных обязательств в области охраны окружающей среды, природопользования и экологической безопасности в КР',
+                '');
+
+        INSERT INTO just.document_activity (document_id, activity_id)
+        VALUES (doc_id, (SELECT id FROM just.activity WHERE slug = 'ecology'));
+
+        -- Документ 20
+        INSERT INTO just.document (dtype, files, active, ord)
+        VALUES ('LEGAL_DOCUMENT', '[
+          {
+            "type": "PDF",
+            "path": "/files/undp_global_environmental_conventions_capacities_of_kyrgyzstan_report_ru.pdf",
+            "lang": "ru"
+          },
+          {
+            "type": "PDF",
+            "path": "/files/undp_global_environmental_conventions_capacities_of_kyrgyzstan_report_en.pdf",
+            "lang": "en"
+          }
+        ]', true, 17)
+        RETURNING id INTO doc_id;
+
+        INSERT INTO just.document_lang (document_id, lang, title, descr)
+        VALUES (doc_id, 'ru',
+                'Глобальные экологические конвенции: возможности Кыргызстана',
+                '');
+
+        INSERT INTO just.document_activity (document_id, activity_id)
+        VALUES (doc_id, (SELECT id FROM just.activity WHERE slug = 'ecology'));
+
+        -- Документ 20
+        INSERT INTO just.document (dtype, files, active, ord)
+        VALUES ('LEGAL_DOCUMENT', '[
+          {
+            "type": "PDF",
+            "path": "/files/kick_full_lr.pdf",
+            "lang": "en"
+          }
+        ]', true, 18)
+        RETURNING id INTO doc_id;
+
+        INSERT INTO just.document_lang (document_id, lang, title, descr)
+        VALUES (doc_id, 'en', 'Kick the Habit',
+                '');
+
+        INSERT INTO just.document_activity (document_id, activity_id)
+        VALUES (doc_id, (SELECT id FROM just.activity WHERE slug = 'ecology'));
+
+        -- Документ 21
+        INSERT INTO just.document (dtype, files, active, ord)
+        VALUES ('LEGAL_DOCUMENT', '[
+          {
+            "type": "PDF",
+            "path": "/files/unhcr_climate_change_right_water_sanitation.pdf",
+            "lang": "en"
+          }
+        ]', true, 19)
+        RETURNING id INTO doc_id;
+
+        INSERT INTO just.document_lang (document_id, lang, title, descr)
+        VALUES (doc_id, 'en', 'Climate Change and the Human Rights to Water and Sanitation',
                 '');
 
         INSERT INTO just.document_activity (document_id, activity_id)

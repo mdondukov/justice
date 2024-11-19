@@ -5,7 +5,8 @@
              class="w-[30px] h-[30px] mr-6"/>
 
         <a class="font-medium text-lg leading-tight text-deep-sky-900 hover:text-deep-sky-800"
-           href="#"
-           th:text="${document.title}">Title</a>
+           th:href="${document.files.?[lang == #locale.language][0]?.path ?: '#'}"
+           th:text="${document.title}"
+           target="_blank">Title</a>
     </div>
 </div>

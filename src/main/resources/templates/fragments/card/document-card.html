@@ -1,6 +1,7 @@
 <div th:fragment="documentCard(document)">
     <a class="block bg-white border border-gray-100 rounded-lg h-full flex flex-col justify-between p-7"
-       href="#">
+       th:href="${document.files.?[lang == #locale.language][0]?.path ?: '#'}"
+       target="_blank">
         <div class="flex items-start mb-8">
             <img th:src="@{'/img/common/' + ${document.getIcon()} + '.svg'}"
                  th:alt="#{btn.download.document}"
