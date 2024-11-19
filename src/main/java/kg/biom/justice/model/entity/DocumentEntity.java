@@ -49,6 +49,7 @@ public class DocumentEntity implements Serializable {
     @ManyToMany
     @JoinTable(
             name = "document_activity",
+            schema = "just",
             joinColumns = @JoinColumn(name = "document_id"),
             inverseJoinColumns = @JoinColumn(name = "activity_id")
     )

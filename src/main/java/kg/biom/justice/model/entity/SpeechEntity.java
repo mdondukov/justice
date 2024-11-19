@@ -53,6 +53,7 @@ public class SpeechEntity implements Serializable {
     @ManyToMany
     @JoinTable(
             name = "speech_activity",
+            schema = "just",
             joinColumns = @JoinColumn(name = "speech_id"),
             inverseJoinColumns = @JoinColumn(name = "activity_id")
     )

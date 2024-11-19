@@ -50,6 +50,7 @@ public class PosterEntity implements Serializable {
     @ManyToMany
     @JoinTable(
             name = "poster_activity",
+            schema = "just",
             joinColumns = @JoinColumn(name = "poster_id"),
             inverseJoinColumns = @JoinColumn(name = "activity_id")
     )
