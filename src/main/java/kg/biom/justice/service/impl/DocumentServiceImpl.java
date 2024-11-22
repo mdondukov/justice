@@ -29,14 +29,22 @@ public class DocumentServiceImpl implements DocumentService {
     @Override
     public List<DocumentDto> getDocuments(DocumentType type, int limit, Locale locale) {
         Pageable pageable = PageRequest.of(0, limit, Sort.by(Sort.Direction.ASC, "ord"));
-        return documentViewRepository.findAllByTypeAndLang(type, locale.getLanguage(), pageable).stream()
+        return documentViewRepository.findAllByType(type, locale.getLanguage(), pageable).stream()
+                .map(this::convertToDto)
+                .toList();
+    }
+
+    @Override
+    public List<DocumentDto> getDocuments(DocumentType type, Long activityId, int limit, Locale locale) {
+        Pageable pageable = PageRequest.of(0, limit, Sort.by(Sort.Direction.ASC, "ord"));
+        return documentViewRepository.findAllByTypeAndActivityId(type, activityId, locale.getLanguage(), pageable).stream()
                 .map(this::convertToDto)
                 .toList();
     }
 
     @Override
     public Optional<DocumentDto> getDocument(Long id, Locale locale) {
-        return documentViewRepository.findByIdAndLang(id, locale.getLanguage())
+        return documentViewRepository.findById(id, locale.getLanguage())
                 .map(this::convertToDto);
     }
 
@@ -55,7 +63,7 @@ public class DocumentServiceImpl implements DocumentService {
         Map<AttachFileType, Long> typeCounts = new HashMap<>();
         List<AttachFile> files = entity.getFiles().stream()
                 .peek(file -> {
-                    file.setPath(String.format("%s%s", basePath, file.getPath()));
+                    file.setPath(String.format("%s/%s", basePath, file.getPath()));
                     typeCounts.merge(file.getType(), 1L, Long::sum);
                 })
                 .toList();

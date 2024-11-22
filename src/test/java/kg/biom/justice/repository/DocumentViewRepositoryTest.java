@@ -24,7 +24,7 @@ class DocumentViewRepositoryTest {
     void findById() {
         Long id = 1L;
         var result = assertDoesNotThrow(() ->
-                documentViewRepository.findByIdAndLang(id, defaultLocale));
+                documentViewRepository.findById(id, defaultLocale));
 
         assertTrue(result.isPresent());
         assertEquals(id, result.get().getId());
@@ -36,7 +36,16 @@ class DocumentViewRepositoryTest {
     void findAll() {
         Pageable pageable = PageRequest.of(0, 3, Sort.by(Sort.Direction.DESC, "ord"));
         var result = assertDoesNotThrow(() ->
-                documentViewRepository.findAllByTypeAndLang(DocumentType.ANALYTICS, defaultLocale, pageable));
+                documentViewRepository.findAllByType(DocumentType.ANALYTICS, defaultLocale, pageable));
+
+        result.getContent().forEach(System.out::println);
+    }
+
+    @Test
+    void findAllByActivity() {
+        Pageable pageable = PageRequest.of(0, 3, Sort.by(Sort.Direction.DESC, "ord"));
+        var result = assertDoesNotThrow(() ->
+                documentViewRepository.findAllByTypeAndActivityId(DocumentType.LEGAL_DOCUMENT, 1L, defaultLocale, pageable));
 
         result.getContent().forEach(System.out::println);
     }

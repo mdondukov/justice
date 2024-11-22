@@ -261,8 +261,7 @@
                  role="tabpanel"
                  aria-labelledby="ecology-tab">
 
-                <th:block th:each="document : ${documents}"
-                          th:if="${document.activityCodes.contains('ecology')}"
+                <th:block th:each="document : ${documents['ECOLOGY']}"
                           th:include="~{fragments/card/document-h-card.html :: documentHCard(document)}"></th:block>
             </div>
             <div class="hidden grid grid-cols-1 md:grid-cols-2 gap-8"
@@ -270,8 +269,7 @@
                  role="tabpanel"
                  aria-labelledby="gender-tab">
 
-                <th:block th:each="document : ${documents}"
-                          th:if="${document.activityCodes.contains('gender')}"
+                <th:block th:each="document : ${documents['GENDER']}"
                           th:include="~{fragments/card/document-h-card.html :: documentHCard(document)}"></th:block>
             </div>
             <div class="hidden grid grid-cols-1 md:grid-cols-2 gap-8"
@@ -279,8 +277,7 @@
                  role="tabpanel"
                  aria-labelledby="privacy-tab">
 
-                <th:block th:each="document : ${documents}"
-                          th:if="${document.activityCodes.contains('privacy')}"
+                <th:block th:each="document : ${documents['PRIVACY']}"
                           th:include="~{fragments/card/document-h-card.html :: documentHCard(document)}"></th:block>
             </div>
         </div>

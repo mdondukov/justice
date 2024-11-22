@@ -17,17 +17,5 @@
                  stripComments="false"
                  endDelimiter="\nGO"
         />
-
-        <comment>
-            Добавление предварительных данных
-        </comment>
-        <sqlFile encoding="utf8"
-                 dbms="postgresql"
-                 path="sql/2024-10-30--02-initial-data.sql"
-                 relativeToChangelogFile="true"
-                 splitStatements="false"
-                 stripComments="false"
-                 endDelimiter="\nGO"
-        />
     </changeSet>
 </databaseChangeLog>

@@ -24,7 +24,7 @@ VALUES ((SELECT id FROM just.activity WHERE slug = 'privacy'), 'ru', 'Право
 
 INSERT INTO just.event (slug, thumb, publish_date, active)
 VALUES ('center-opening',
-        '/tmb/30c677b6-78dd-4522-9121-6218b55cf85c.jpg',
+        'tmb/30c677b6-78dd-4522-9121-6218b55cf85c.jpg',
         '2024-07-25 00:00:00', true);
 
 INSERT INTO just.event_lang (event_id, lang, title, descr, content)
@@ -34,7 +34,7 @@ VALUES ((SELECT id FROM just.event WHERE slug = 'center-opening'), 'ru',
 
 INSERT INTO just.event (slug, thumb, publish_date, active)
 VALUES ('spec-expertize',
-        '/tmb/7e3bb7d0-5a48-48c8-90c8-fb31caf0c700.jpg',
+        'tmb/7e3bb7d0-5a48-48c8-90c8-fb31caf0c700.jpg',
         '2024-08-09 00:00:00', true);
 
 INSERT INTO just.event_lang (event_id, lang, title, descr, content)
@@ -44,7 +44,7 @@ VALUES ((SELECT id FROM just.event WHERE slug = 'spec-expertize'), 'ru',
 
 insert into just.event (slug, thumb, publish_date, active)
 values ('law-creation-foundation',
-        '/tmb/995f8cf3-a094-48c1-b617-41a8c7d1884f.jpg',
+        'tmb/995f8cf3-a094-48c1-b617-41a8c7d1884f.jpg',
         '2024-06-06 00:00:00', true);
 
 INSERT INTO just.event_lang (event_id, lang, title, descr, content)
@@ -65,7 +65,7 @@ $$
         VALUES ('MANUAL', '[
           {
             "type": "PDF",
-            "path": "/files/pub_monitoring_manual_01.pdf",
+            "path": "files/pub_monitoring_manual_01.pdf",
             "lang": "ru"
           }
         ]', true, 1)
@@ -80,7 +80,7 @@ $$
         VALUES ('ANALYTICS', '[
           {
             "type": "PDF",
-            "path": "/files/annex5_analytical_report_privacy.pdf",
+            "path": "files/annex5_analytical_report_privacy.pdf",
             "lang": "ru"
           }
         ]', true, 1)
@@ -99,7 +99,7 @@ $$
         VALUES ('ANALYTICS', '[
           {
             "type": "PDF",
-            "path": "/files/annex7_analytical_report_eco.pdf",
+            "path": "files/annex7_analytical_report_eco.pdf",
             "lang": "ru"
           }
         ]', true, 2)
@@ -118,7 +118,7 @@ $$
         VALUES ('ANALYTICS', '[
           {
             "type": "PDF",
-            "path": "/files/annex3_analytical_report_gender.pdf",
+            "path": "files/annex3_analytical_report_gender.pdf",
             "lang": "ru"
           }
         ]', true, 3)
@@ -137,7 +137,7 @@ $$
         VALUES ('LEGAL_DOCUMENT', '[
           {
             "type": "PDF",
-            "path": "/files/law_chemic.pdf",
+            "path": "files/law_chemic.pdf",
             "lang": "ru"
           }
         ]', true, 1)
@@ -156,7 +156,7 @@ $$
         VALUES ('LEGAL_DOCUMENT', '[
           {
             "type": "PDF",
-            "path": "/files/bio_workgroup_2.pdf",
+            "path": "files/bio_workgroup_2.pdf",
             "lang": "ru"
           }
         ]', true, 2)
@@ -175,7 +175,7 @@ $$
         VALUES ('LEGAL_DOCUMENT', '[
           {
             "type": "WORD",
-            "path": "/files/bio_conv.docx",
+            "path": "files/bio_conv.docx",
             "lang": "ru"
           }
         ]', true, 3)
@@ -194,7 +194,7 @@ $$
         VALUES ('LEGAL_DOCUMENT', '[
           {
             "type": "PDF",
-            "path": "/files/green_economic_ideas.pdf",
+            "path": "files/green_economic_ideas.pdf",
             "lang": "ru"
           }
         ]', true, 4)
@@ -213,7 +213,7 @@ $$
         VALUES ('LEGAL_DOCUMENT', '[
           {
             "type": "WORD",
-            "path": "/files/iter_eco_conventions.doc",
+            "path": "files/iter_eco_conventions.doc",
             "lang": "ru"
           }
         ]', true, 5)
@@ -232,7 +232,7 @@ $$
         VALUES ('LEGAL_DOCUMENT', '[
           {
             "type": "PDF",
-            "path": "/files/sd_goals_report.pdf",
+            "path": "files/sd_goals_report.pdf",
             "lang": "ru"
           }
         ]', true, 6)
@@ -251,7 +251,7 @@ $$
         VALUES ('LEGAL_DOCUMENT', '[
           {
             "type": "WORD",
-            "path": "/files/climate_change_ca_request.docx",
+            "path": "files/climate_change_ca_request.docx",
             "lang": "ru"
           }
         ]', true, 7)
@@ -270,7 +270,7 @@ $$
         VALUES ('LEGAL_DOCUMENT', '[
           {
             "type": "PDF",
-            "path": "/files/eco_inter_kr.pdf",
+            "path": "files/eco_inter_kr.pdf",
             "lang": "ru"
           }
         ]', true, 8)
@@ -289,7 +289,7 @@ $$
         VALUES ('LEGAL_DOCUMENT', '[
           {
             "type": "WORD",
-            "path": "/files/law_climate.doc",
+            "path": "files/law_climate.doc",
             "lang": "ru"
           }
         ]', true, 9)
@@ -308,7 +308,7 @@ $$
         VALUES ('LEGAL_DOCUMENT', '[
           {
             "type": "PDF",
-            "path": "/files/climate_change_evaluation.pdf",
+            "path": "files/climate_change_evaluation.pdf",
             "lang": "ru"
           }
         ]', true, 10)
@@ -327,7 +327,7 @@ $$
         VALUES ('LEGAL_DOCUMENT', '[
           {
             "type": "PDF",
-            "path": "/files/climate_investment_program.pdf",
+            "path": "files/climate_investment_program.pdf",
             "lang": "ru"
           }
         ]', true, 11)
@@ -346,7 +346,7 @@ $$
         VALUES ('LEGAL_DOCUMENT', '[
           {
             "type": "PDF",
-            "path": "/files/climate_facts_and_policy.pdf",
+            "path": "files/climate_facts_and_policy.pdf",
             "lang": "ru"
           }
         ]', true, 12)
@@ -365,7 +365,7 @@ $$
         VALUES ('LEGAL_DOCUMENT', '[
           {
             "type": "WORD",
-            "path": "/files/biodiversity_convention.doc",
+            "path": "files/biodiversity_convention.doc",
             "lang": "ru"
           }
         ]', true, 13)
@@ -384,7 +384,7 @@ $$
         VALUES ('LEGAL_DOCUMENT', '[
           {
             "type": "WORD",
-            "path": "/files/eco_conventions_role.doc",
+            "path": "files/eco_conventions_role.doc",
             "lang": "ru"
           }
         ]', true, 14)
@@ -402,7 +402,7 @@ $$
         VALUES ('LEGAL_DOCUMENT', '[
           {
             "type": "PDF",
-            "path": "/files/centralasia_ru.pdf",
+            "path": "files/centralasia_ru.pdf",
             "lang": "ru"
           }
         ]', true, 15)
@@ -421,7 +421,7 @@ $$
         VALUES ('LEGAL_DOCUMENT', '[
           {
             "type": "WORD",
-            "path": "/files/legislation_analysis_iee.doc",
+            "path": "files/legislation_analysis_iee.doc",
             "lang": "ru"
           }
         ]', true, 16)
@@ -440,12 +440,12 @@ $$
         VALUES ('LEGAL_DOCUMENT', '[
           {
             "type": "PDF",
-            "path": "/files/undp_global_environmental_conventions_capacities_of_kyrgyzstan_report_ru.pdf",
+            "path": "files/undp_global_environmental_conventions_capacities_of_kyrgyzstan_report_ru.pdf",
             "lang": "ru"
           },
           {
             "type": "PDF",
-            "path": "/files/undp_global_environmental_conventions_capacities_of_kyrgyzstan_report_en.pdf",
+            "path": "files/undp_global_environmental_conventions_capacities_of_kyrgyzstan_report_en.pdf",
             "lang": "en"
           }
         ]', true, 17)
@@ -464,7 +464,7 @@ $$
         VALUES ('LEGAL_DOCUMENT', '[
           {
             "type": "PDF",
-            "path": "/files/kick_full_lr.pdf",
+            "path": "files/kick_full_lr.pdf",
             "lang": "en"
           }
         ]', true, 18)
@@ -482,7 +482,7 @@ $$
         VALUES ('LEGAL_DOCUMENT', '[
           {
             "type": "PDF",
-            "path": "/files/unhcr_climate_change_right_water_sanitation.pdf",
+            "path": "files/unhcr_climate_change_right_water_sanitation.pdf",
             "lang": "en"
           }
         ]', true, 19)
@@ -503,11 +503,11 @@ $$;
 
 INSERT INTO just.poster (slug, thumb, files, ord)
 VALUES ('private-data-safety',
-        '/tmb/e955a40d-e878-4b0c-b5ae-14ae8cfac2b6.jpg',
+        'tmb/e955a40d-e878-4b0c-b5ae-14ae8cfac2b6.jpg',
         '[
           {
             "type": "PDF",
-            "path": "/files/private-data-safety.pdf",
+            "path": "files/private-data-safety.pdf",
             "lang": "ru"
           }
         ]',
@@ -524,11 +524,11 @@ VALUES ((SELECT id FROM just.poster WHERE slug = 'private-data-safety'),
 
 INSERT INTO just.poster (slug, thumb, files, ord)
 VALUES ('public-law-process',
-        '/tmb/b2d29749-9d36-44cc-909b-baa6de1a6c9f.jpg',
+        'tmb/b2d29749-9d36-44cc-909b-baa6de1a6c9f.jpg',
         '[
           {
             "type": "PDF",
-            "path": "/files/public-law-process.pdf",
+            "path": "files/public-law-process.pdf",
             "lang": "ru"
           }
         ]',
@@ -541,11 +541,11 @@ VALUES ((SELECT id FROM just.poster WHERE slug = 'public-law-process'),
 
 INSERT INTO just.poster (slug, thumb, files, ord)
 VALUES ('eco-public-participation',
-        '/tmb/5201076d-9f0d-4016-847f-05d2ef046a90.jpg',
+        'tmb/5201076d-9f0d-4016-847f-05d2ef046a90.jpg',
         '[
           {
             "type": "PDF",
-            "path": "/files/eco-public-participation.pdf",
+            "path": "files/eco-public-participation.pdf",
             "lang": "ru"
           }
         ]',
@@ -565,7 +565,7 @@ VALUES ((SELECT id FROM just.poster WHERE slug = 'eco-public-participation'),
 
 INSERT INTO just.speech (slug, thumb)
 VALUES ('gender-mechanisms',
-        '/tmb/1892ec51-6c32-4aca-a182-527f338afc83.jpg');
+        'tmb/1892ec51-6c32-4aca-a182-527f338afc83.jpg');
 
 INSERT INTO just.speech_lang (speech_id, title, descr, speaker)
 VALUES ((SELECT id FROM just.speech WHERE slug = 'gender-mechanisms'),
@@ -579,7 +579,7 @@ VALUES ((SELECT id FROM just.speech WHERE slug = 'gender-mechanisms'),
 
 INSERT INTO just.speech (slug, thumb)
 VALUES ('international-law-and-human-rights',
-        '/tmb/d131b4da-fd49-4cc0-b592-b61b10e809e8.jpg');
+        'tmb/d131b4da-fd49-4cc0-b592-b61b10e809e8.jpg');
 
 INSERT INTO just.speech_lang (speech_id, title, descr, speaker)
 VALUES ((SELECT id FROM just.speech WHERE slug = 'international-law-and-human-rights'),
@@ -589,7 +589,7 @@ VALUES ((SELECT id FROM just.speech WHERE slug = 'international-law-and-human-ri
 
 INSERT INTO just.speech (slug, thumb)
 VALUES ('eco-safety',
-        '/tmb/aa99d532-7de0-45e4-8b68-f7b5f578b9e3.jpg');
+        'tmb/aa99d532-7de0-45e4-8b68-f7b5f578b9e3.jpg');
 
 INSERT INTO just.speech_lang (speech_id, title, descr, speaker)
 VALUES ((SELECT id FROM just.speech WHERE slug = 'eco-safety'),

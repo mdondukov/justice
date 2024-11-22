@@ -10,5 +10,7 @@ import java.util.Optional;
 public interface DocumentService {
     List<DocumentDto> getDocuments(DocumentType type, int limit, Locale locale);
 
+    List<DocumentDto> getDocuments(DocumentType type, Long activityId, int limit, Locale locale);
+
     Optional<DocumentDto> getDocument(Long id, Locale locale);
 }

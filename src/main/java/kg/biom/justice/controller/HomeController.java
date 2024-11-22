@@ -1,5 +1,7 @@
 package kg.biom.justice.controller;
 
+import kg.biom.justice.model.dto.DocumentDto;
+import kg.biom.justice.model.enums.ActivityCode;
 import kg.biom.justice.model.enums.DocumentType;
 import kg.biom.justice.service.DocumentService;
 import kg.biom.justice.service.EventService;
@@ -11,7 +13,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -32,7 +37,13 @@ public class HomeController {
         model.addAttribute("events", eventService.getEvents(0, defaultLimit, locale).getContent());
         model.addAttribute("speeches", speechService.getSpeeches(0, defaultLimit, locale).getContent());
         documentService.getDocument(1L, locale).ifPresent(manual -> model.addAttribute("manual", manual));
-        model.addAttribute("documents", documentService.getDocuments(DocumentType.LEGAL_DOCUMENT, documentsLimit, locale));
+
+        Map<String, List<DocumentDto>> documents = new HashMap<>();
+        documents.put(ActivityCode.ECOLOGY.name(), documentService.getDocuments(DocumentType.LEGAL_DOCUMENT, 1L, documentsLimit, locale));
+        documents.put(ActivityCode.GENDER.name(), documentService.getDocuments(DocumentType.LEGAL_DOCUMENT, 2L, documentsLimit, locale));
+        documents.put(ActivityCode.PRIVACY.name(), documentService.getDocuments(DocumentType.LEGAL_DOCUMENT, 3L, documentsLimit, locale));
+        model.addAttribute("documents", documents);
+
         model.addAttribute("analytics", documentService.getDocuments(DocumentType.ANALYTICS, defaultLimit, locale));
         model.addAttribute("posters", posterService.getPosters(0, defaultLimit, locale).getContent());
         return "pages/home";

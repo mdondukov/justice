@@ -55,11 +55,11 @@ create table if not exists just.document
 
 create table if not exists just.document_lang
 (
-    id          bigserial              not null,
-    document_id bigint                 not null,
-    lang        character varying(2)   not null default 'ru',
-    title       character varying(200) not null,
-    descr       text                   not null,
+    id          bigserial            not null,
+    document_id bigint               not null,
+    lang        character varying(2) not null default 'ru',
+    title       character varying    not null,
+    descr       text                 not null,
     constraint document_lang_pk primary key (id),
     constraint document_lang_uniq unique (document_id, lang),
     constraint document_lang_document_id_fk foreign key (document_id)
@@ -110,12 +110,12 @@ create table if not exists just.event
 
 create table if not exists just.event_lang
 (
-    id          bigserial              not null,
-    event_id    bigint                 not null,
-    lang        character varying(2)   not null default 'ru',
-    title       character varying(200) not null,
-    descr       text                   not null,
-    content     text                   not null,
+    id          bigserial            not null,
+    event_id    bigint               not null,
+    lang        character varying(2) not null default 'ru',
+    title       character varying    not null,
+    descr       text                 not null,
+    content     text                 not null,
     youtube_url character varying(100),
     constraint event_lang_pk primary key (id),
     constraint event_lang_uniq unique (event_id, lang),
@@ -160,11 +160,11 @@ create table if not exists just.poster
 
 create table if not exists just.poster_lang
 (
-    id        bigserial              not null,
-    poster_id bigint                 not null,
-    lang      character varying(2)   not null default 'ru',
-    title     character varying(200) not null,
-    descr     text                   not null,
+    id        bigserial            not null,
+    poster_id bigint               not null,
+    lang      character varying(2) not null default 'ru',
+    title     character varying    not null,
+    descr     text                 not null,
     constraint poster_lang_pk primary key (id),
     constraint poster_lang_uniq unique (poster_id, lang),
     constraint poster_lang_poster_id_fk foreign key (poster_id)
@@ -218,7 +218,7 @@ create table if not exists just.speech_lang
     id        bigserial              not null,
     speech_id bigint                 not null,
     lang      character varying(2)   not null default 'ru',
-    title     character varying(200) not null,
+    title     character varying      not null,
     descr     text                   not null,
     speaker   character varying(200) not null,
     constraint speech_lang_pk primary key (id),

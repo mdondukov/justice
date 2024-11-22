@@ -22,6 +22,6 @@ public class ContentUtil {
     }
 
     public static String mergePath(String basePath, String relativePath) {
-        return String.format("%s%s", basePath, relativePath);
+        return String.format("%s/%s", basePath, relativePath);
     }
 }
