@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru" th:replace="~{layouts/base.html :: base(~{::title}, ~{::main}, _, _)}">
+<head>
+    <title th:text="${speech.title} + ' | MJ'">Speech Title</title>
+</head>
+<body>
+<main>
+    <!--    <div th:replace="~{fragments/section-head :: base(${speech.title}, ${breadcrumbs})}"></div>-->
+    <section>
+        <div class="max-w-screen-md px-4 mt-12 mx-auto">
+            <h3 th:text="${speech.title}"
+                class="text-deep-sky-900 font-bold text-3xl leading-0">Posters</h3>
+
+            <p class="mb-3 text-sm font-normal text-gray-400 mt-6" th:text="${speech.getSpeaker()}">Speaker</p>
+        </div>
+    </section>
+
+    <section>
+        <div class="max-w-screen-md px-4 mt-6 mx-auto">
+            <iframe th:src="${speech.youtubeUrl}"
+                    class="w-full aspect-video rounded-lg"
+                    frameborder="0"
+                    allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <section>
+        <div class="max-w-screen-md px-4 mt-12 mx-auto">
+            <p class="text-gray-700 mb-4"
+               th:text="${speech.descr}">Speech description goes here.</p>
+
+            <div class="flex justify-start items-center mt-6">
+                <a class="font-medium text-deep-sky-900 hover:text-deep-sky-800"
+                   href="#"
+                   th:text="#{btn.download.presentation}"
+                   target="_blank">Download</a>
+
+                <img class="ml-4" th:src="@{/img/common/down.svg}" th:alt="#{btn.download.publication}"/>
+            </div>
+        </div>
+    </section>
+</main>
+</body>
+</html>

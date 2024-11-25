@@ -7,4 +7,6 @@ import java.util.Locale;
 
 public interface SpeechService {
     Page<SpeechDto> getSpeeches(int page, int limit, Locale locale);
+
+    SpeechDto getSpeech(String slug, Locale locale);
 }

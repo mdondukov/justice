@@ -1,5 +1,6 @@
 package kg.biom.justice.service.impl;
 
+import kg.biom.justice.exception.NotFoundException;
 import kg.biom.justice.model.ContentUtil;
 import kg.biom.justice.model.dto.AttachFile;
 import kg.biom.justice.model.dto.SpeechDto;
@@ -8,6 +9,7 @@ import kg.biom.justice.repository.SpeechRepository;
 import kg.biom.justice.repository.SpeechViewRepository;
 import kg.biom.justice.service.SpeechService;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -34,6 +36,14 @@ public class SpeechServiceImpl implements SpeechService {
     public Page<SpeechDto> getSpeeches(int page, int limit, Locale locale) {
         Pageable pageable = PageRequest.of(page, limit, Sort.by(Sort.Direction.DESC, "publishDate"));
         return speechViewRepository.findAllByLang(locale.getLanguage(), pageable).map(this::convertToDto);
+    }
+
+    @SneakyThrows
+    @Override
+    public SpeechDto getSpeech(String slug, Locale locale) {
+        return speechViewRepository.findBySlug(slug, locale.getLanguage())
+                .map(this::convertToDto)
+                .orElseThrow(() -> new NotFoundException("Speech not found with slug: " + slug));
     }
 
     private SpeechDto convertToDto(SpeechViewEntity entity) {

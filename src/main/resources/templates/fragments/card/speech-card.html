@@ -1,6 +1,6 @@
 <div th:fragment="speechCard(speech)">
     <a class="block bg-white border border-gray-100 rounded-lg"
-       href="#">
+       th:href="@{'/speeches/' + ${speech.slug}}">
         <img class="rounded-t-lg" th:src="${speech.getThumb()}" th:alt="${speech.getTitle()}"/>
 
         <div class="p-7">

@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -39,5 +40,20 @@ public class SpeechController {
         model.addAttribute("breadcrumbs", breadcrumbs);
 
         return "pages/speeches";
+    }
+
+    @GetMapping("/{slug}")
+    public String getSpeechBySlug(@PathVariable String slug, Model model, Locale locale) {
+        SpeechDto speech = speechService.getSpeech(slug, locale);
+        model.addAttribute("speech", speech);
+
+        List<BreadcrumbDto> breadcrumbs = List.of(
+                new BreadcrumbDto(messageSource.getMessage("section.education", null, locale), null),
+                new BreadcrumbDto(messageSource.getMessage("section.education.speeches", null, locale), "/speeches"),
+                new BreadcrumbDto(speech.getTitle(), null)
+        );
+        model.addAttribute("breadcrumbs", breadcrumbs);
+
+        return "pages/speech";
     }
 }
