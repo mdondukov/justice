@@ -5,7 +5,6 @@ import kg.biom.justice.model.dto.DocumentDto;
 import kg.biom.justice.model.entity.DocumentViewEntity;
 import kg.biom.justice.model.enums.AttachFileType;
 import kg.biom.justice.model.enums.DocumentType;
-import kg.biom.justice.repository.DocumentRepository;
 import kg.biom.justice.repository.DocumentViewRepository;
 import kg.biom.justice.service.DocumentService;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +20,6 @@ import java.util.*;
 @RequiredArgsConstructor
 public class DocumentServiceImpl implements DocumentService {
     private final DocumentViewRepository documentViewRepository;
-    private final DocumentRepository documentRepository;
 
     @Value("${content.base.path}")
     private String basePath;
@@ -54,9 +52,6 @@ public class DocumentServiceImpl implements DocumentService {
         document.setTitle(entity.getTitle());
         document.setDescr(entity.getDescr());
         document.setType(entity.getType());
-
-        List<String> activityCodes = documentRepository.findActivitySlugsByDocumentId(entity.getId());
-        document.setActivityCodes(activityCodes);
 
         if (entity.getFiles() == null) return document;
 

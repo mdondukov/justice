@@ -5,40 +5,41 @@
 </head>
 <body>
 <main>
-    <!--    <div th:replace="~{fragments/section-head :: base(${speech.title}, ${breadcrumbs})}"></div>-->
-    <section>
-        <div class="max-w-screen-md px-4 mt-12 mx-auto">
+    <div>
+        <div th:replace="~{fragments/btn/back-btn :: backBtn}"></div>
+    </div>
+    <article>
+        <div class="max-w-screen-md px-4 mx-auto">
             <h3 th:text="${speech.title}"
                 class="text-deep-sky-900 font-bold text-3xl leading-0">Posters</h3>
 
-            <p class="mb-3 text-sm font-normal text-gray-400 mt-6" th:text="${speech.getSpeaker()}">Speaker</p>
-        </div>
-    </section>
+            <div class="mt-6">
+                <div class="flex items-center gap-3">
+                    <img th:alt="${speech.person.name}"
+                         th:src="${speech.person.photo}"
+                         class="aspect-square size-8 rounded-full object-cover">
 
-    <section>
-        <div class="max-w-screen-md px-4 mt-6 mx-auto">
-            <iframe th:src="${speech.youtubeUrl}"
-                    class="w-full aspect-video rounded-lg"
-                    frameborder="0"
-                    allowfullscreen></iframe>
-        </div>
-    </section>
-
-    <section>
-        <div class="max-w-screen-md px-4 mt-12 mx-auto">
-            <p class="text-gray-700 mb-4"
-               th:text="${speech.descr}">Speech description goes here.</p>
-
-            <div class="flex justify-start items-center mt-6">
-                <a class="font-medium text-deep-sky-900 hover:text-deep-sky-800"
-                   href="#"
-                   th:text="#{btn.download.presentation}"
-                   target="_blank">Download</a>
-
-                <img class="ml-4" th:src="@{/img/common/down.svg}" th:alt="#{btn.download.publication}"/>
+                    <div class="text-sm/5 text-gray-700"
+                         th:text="${speech.person.name}">Speaker
+                    </div>
+                </div>
             </div>
+
+            <div class="my-12">
+                <iframe th:src="${speech.youtubeUrl}"
+                        class="w-full aspect-video rounded-lg"
+                        frameborder="0"
+                        allowfullscreen></iframe>
+            </div>
+
+            <p class="text-gray-700"
+               th:text="${speech.descr}">Description</p>
+
+            <div th:if="${speech.presentation != null}"
+                 th:insert="~{fragments/btn/download-btn :: downloadBtn(#{btn.download.presentation}, ${speech.presentation})}"
+                 class="mt-12"></div>
         </div>
-    </section>
+    </article>
 </main>
 </body>
 </html>

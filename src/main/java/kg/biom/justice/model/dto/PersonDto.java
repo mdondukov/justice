@@ -7,14 +7,11 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class SpeechDto {
+public class PersonDto {
     private Long id;
     private String slug;
-    private String title;
+    private String name;
+    private String org;
     private String descr;
-    private PersonDto person;
-    private String thumb;
-    private AttachFile presentation;
-    private String youtubeUrl;
-    private String publishDate;
+    private String photo;
 }

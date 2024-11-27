@@ -47,6 +47,10 @@ public class SpeechEntity implements Serializable {
     @Column(name = "active")
     private boolean active;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "person_id")
+    private PersonEntity person;
+
     @OneToMany(mappedBy = "speech", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<SpeechLangEntity> translations;
 

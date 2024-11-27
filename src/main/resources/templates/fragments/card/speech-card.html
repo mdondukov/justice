@@ -1,13 +1,13 @@
 <div th:fragment="speechCard(speech)">
     <a class="block bg-white border border-gray-100 rounded-lg"
        th:href="@{'/speeches/' + ${speech.slug}}">
-        <img class="rounded-t-lg" th:src="${speech.getThumb()}" th:alt="${speech.getTitle()}"/>
+        <img class="rounded-t-lg" th:src="${speech.thumb}" th:alt="${speech.title}"/>
 
         <div class="p-7">
             <h5 class="mb-2 text-xl font-bold leading-tight text-deep-sky-900 hover:text-deep-sky-800"
-                th:text="${speech.getTitle()}">Title</h5>
+                th:text="${speech.title}">Title</h5>
 
-            <p class="mb-3 text-sm font-normal text-gray-400" th:text="${speech.getSpeaker()}">Speaker</p>
+            <p class="mb-3 text-sm font-normal text-gray-400" th:text="${speech.person.name}">Speaker</p>
         </div>
     </a>
 </div>

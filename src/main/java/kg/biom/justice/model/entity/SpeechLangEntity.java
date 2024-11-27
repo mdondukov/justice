@@ -32,7 +32,4 @@ public class SpeechLangEntity implements Serializable {
 
     @Column(name = "descr")
     private String descr;
-
-    @Column(name = "speaker")
-    private String speaker;
 }

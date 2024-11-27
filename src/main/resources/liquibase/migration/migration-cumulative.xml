@@ -6,5 +6,7 @@
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
 
     <include file="2024-10-30--01-initial-schema-and-data.xml" relativeToChangelogFile="true"/>
+    <include file="2024-11-25--01-add-person-table.xml" relativeToChangelogFile="true"/>
+    <include file="2024-11-27--01-rm-speaker-column.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

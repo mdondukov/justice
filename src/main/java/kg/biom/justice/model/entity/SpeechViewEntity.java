@@ -35,8 +35,9 @@ public class SpeechViewEntity implements Serializable {
     @Column(name = "descr")
     private String descr;
 
-    @Column(name = "speaker")
-    private String speaker;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "person_id")
+    private PersonViewEntity person;
 
     @Column(name = "thumb")
     private String thumbnail;

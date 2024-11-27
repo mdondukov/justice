@@ -3,9 +3,10 @@ package kg.biom.justice.service.impl;
 import kg.biom.justice.exception.NotFoundException;
 import kg.biom.justice.model.ContentUtil;
 import kg.biom.justice.model.dto.AttachFile;
+import kg.biom.justice.model.dto.PersonDto;
 import kg.biom.justice.model.dto.SpeechDto;
 import kg.biom.justice.model.entity.SpeechViewEntity;
-import kg.biom.justice.repository.SpeechRepository;
+import kg.biom.justice.model.mapper.PersonMapper;
 import kg.biom.justice.repository.SpeechViewRepository;
 import kg.biom.justice.service.SpeechService;
 import lombok.RequiredArgsConstructor;
@@ -17,14 +18,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Locale;
 
 @Service
 @RequiredArgsConstructor
 public class SpeechServiceImpl implements SpeechService {
     private final SpeechViewRepository speechViewRepository;
-    private final SpeechRepository speechRepository;
+    private final PersonMapper personMapper;
 
     @Value("${content.base.path}")
     private String basePath;
@@ -52,7 +52,6 @@ public class SpeechServiceImpl implements SpeechService {
         speech.setSlug(entity.getSlug());
         speech.setTitle(entity.getTitle());
         speech.setDescr(entity.getDescr());
-        speech.setSpeaker(entity.getSpeaker());
         speech.setThumb(ContentUtil.mergePath(basePath, entity.getThumbnail()));
         speech.setYoutubeUrl(entity.getYoutubeUrl());
         speech.setPublishDate(ContentUtil.toDtString(entity.getPublishDate(), datePattern));
@@ -63,8 +62,11 @@ public class SpeechServiceImpl implements SpeechService {
             speech.setPresentation(presentation);
         }
 
-        List<String> activityCodes = speechRepository.findActivitySlugsBySpeechId(speech.getId());
-        speech.setActivityCodes(activityCodes);
+        if (entity.getPerson() != null) {
+            PersonDto person = personMapper.toDto(entity.getPerson());
+            person.setPhoto(ContentUtil.mergePath(basePath, entity.getPerson().getPhoto()));
+            speech.setPerson(person);
+        }
 
         return speech;
     }

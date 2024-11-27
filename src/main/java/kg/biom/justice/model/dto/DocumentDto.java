@@ -15,7 +15,6 @@ public class DocumentDto {
     private String title;
     private String descr;
     private DocumentType type;
-    private List<String> activityCodes;
     private List<AttachFile> files;
     private String icon;
     private int ord;

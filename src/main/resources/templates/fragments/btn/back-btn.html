@@ -1,0 +1,15 @@
+<div th:fragment="backBtn" class="max-w-screen-xl px-4 py-8 mx-auto">
+    <a class="group flex items-center text-sm leading-6 text-deep-sky-900 hover:text-deep-sky-800"
+       href="javascript:history.back()">
+        <svg viewBox="0 -9 3 24"
+             class="overflow-visible mr-3 text-current w-auto h-6 group-hover:text-current">
+            <path d="M3 0L0 3L3 6"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+        </svg>
+        <span th:text="#{label.back.link}">Go Back</span>
+    </a>
+</div>

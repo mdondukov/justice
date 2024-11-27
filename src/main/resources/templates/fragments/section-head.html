@@ -1,11 +1,12 @@
-<section th:fragment="base(title, breadcrumbs)"
-         class="bg-deep-sky-50 border border-deep-sky-100">
+<main>
+    <section th:fragment="base(title, breadcrumbs)"
+             class="bg-deep-sky-50 border border-deep-sky-100">
 
-    <div class="max-w-screen-xl px-4 py-20 mx-auto">
-        <h2 class="uppercase text-deep-sky-900 font-bold text-6xl"
-            th:text="${title}">Posters</h2>
+        <div class="max-w-screen-xl px-4 py-20 mx-auto">
+            <h2 class="uppercase text-deep-sky-900 font-bold text-6xl"
+                th:text="${title}">Title</h2>
 
-        <nav th:replace="~{fragments/nav/breadcrumb :: breadcrumbList(${breadcrumbs})}"></nav>
-
-    </div>
-</section>
+            <nav th:replace="~{fragments/nav/breadcrumb :: breadcrumbList(${breadcrumbs})}"></nav>
+        </div>
+    </section>
+</main>
