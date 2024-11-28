@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -27,7 +28,7 @@ public class PosterController {
     private int pageLimit;
 
     @GetMapping
-    public String getAllPostersPage(@RequestParam(defaultValue = "0") int page, Model model, Locale locale) {
+    public String getPostersPage(@RequestParam(defaultValue = "0") int page, Model model, Locale locale) {
         Page<PosterDto> postersPage = posterService.getPosters(page, pageLimit, locale);
         model.addAttribute("postersPage", postersPage);
         model.addAttribute("currentPage", page);
@@ -39,5 +40,20 @@ public class PosterController {
         model.addAttribute("breadcrumbs", breadcrumbs);
 
         return "pages/posters";
+    }
+
+    @GetMapping("/{slug}")
+    public String getPosterPage(@PathVariable String slug, Model model, Locale locale) {
+        PosterDto poster = posterService.getPoster(slug, locale);
+        model.addAttribute("poster", poster);
+
+        List<BreadcrumbDto> breadcrumbs = List.of(
+                new BreadcrumbDto(messageSource.getMessage("section.education", null, locale), null),
+                new BreadcrumbDto(messageSource.getMessage("section.education.speeches", null, locale), "/speeches"),
+                new BreadcrumbDto(poster.getTitle(), null)
+        );
+        model.addAttribute("breadcrumbs", breadcrumbs);
+
+        return "pages/poster";
     }
 }

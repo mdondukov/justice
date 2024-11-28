@@ -27,7 +27,7 @@ public class EventController {
     private int pageLimit;
 
     @GetMapping
-    public String getAllEventsPage(@RequestParam(defaultValue = "0") int page, Model model, Locale locale) {
+    public String getEventsPage(@RequestParam(defaultValue = "0") int page, Model model, Locale locale) {
         Page<EventDto> eventsPage = eventService.getEvents(page, pageLimit, locale);
         model.addAttribute("eventsPage", eventsPage);
         model.addAttribute("currentPage", page);

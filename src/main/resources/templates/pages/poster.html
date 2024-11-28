@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru" th:replace="~{layouts/base.html :: base(~{::title}, ~{::main}, _, ~{::script})}">
+<head>
+    <title th:text="${poster.title} + ' | MJ'">Title</title>
+</head>
+<body>
+<main>
+    <div>
+        <div th:replace="~{fragments/btn/back-btn :: backBtn}"></div>
+    </div>
+    <article>
+        <div class="max-w-screen-md px-4 mx-auto">
+            <h3 th:text="${poster.title}"
+                class="text-deep-sky-900 font-bold text-3xl leading-0">Posters</h3>
+
+            <p class="text-gray-700 mt-6"
+               th:text="${poster.descr}">Description</p>
+
+            <!-- Перебор файлов -->
+            <div class="mt-12" th:each="file, iterStat : ${poster.files}">
+                <div class="pdf-viewer-container w-full">
+                    <!-- Контролы -->
+                    <div th:id="'controls-' + ${iterStat.index}"
+                         class="pdf-controls flex items-center justify-between mb-4">
+                        <button th:id="'prev-button-' + ${iterStat.index}"
+                                class="prev-button bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed"
+                                th:text="#{label.back}">Back
+                        </button>
+                        <span th:id="'page-info-' + ${iterStat.index}" class="page-info text-gray-600"
+                              th:text="#{label.current.page}">Page 1 of 1</span>
+                        <button th:id="'next-button-' + ${iterStat.index}"
+                                class="next-button bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed"
+                                th:text="#{label.forward}">Forward
+                        </button>
+                    </div>
+                    <!-- Контейнер PDF -->
+                    <div class="bg-gray-50 border border-gray-100">
+                        <div class="pdf-container"
+                             th:data-url="${file.path}" th:data-index="${iterStat.index}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+</main>
+
+<!-- Подключение PDF.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+<script src="/js/pdf-viewer.js"></script>
+</body>
+</html>

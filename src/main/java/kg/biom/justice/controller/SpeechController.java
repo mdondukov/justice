@@ -28,7 +28,7 @@ public class SpeechController {
     private int pageLimit;
 
     @GetMapping
-    public String getAllPostersPage(@RequestParam(defaultValue = "0") int page, Model model, Locale locale) {
+    public String getSpeechesPage(@RequestParam(defaultValue = "0") int page, Model model, Locale locale) {
         Page<SpeechDto> speechesPage = speechService.getSpeeches(page, pageLimit, locale);
         model.addAttribute("speechesPage", speechesPage);
         model.addAttribute("currentPage", page);
@@ -43,7 +43,7 @@ public class SpeechController {
     }
 
     @GetMapping("/{slug}")
-    public String getSpeechBySlug(@PathVariable String slug, Model model, Locale locale) {
+    public String getSpeechPage(@PathVariable String slug, Model model, Locale locale) {
         SpeechDto speech = speechService.getSpeech(slug, locale);
         model.addAttribute("speech", speech);
 

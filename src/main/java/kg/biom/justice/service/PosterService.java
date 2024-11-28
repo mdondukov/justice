@@ -7,4 +7,6 @@ import java.util.Locale;
 
 public interface PosterService {
     Page<PosterDto> getPosters(int page, int limit, Locale locale);
+
+    PosterDto getPoster(String slug, Locale locale);
 }
