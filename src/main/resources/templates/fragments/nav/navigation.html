@@ -20,16 +20,67 @@
 
     <div th:fragment="main" class="hidden w-full md:block md:w-auto" id="navbar-default">
         <ul class="uppercase text-xs flex flex-col p-4 md:p-0 mt-4 border border-sky-100 rounded-lg bg-sky-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white">
-            <li>
-                <a href="#"
-                   class="block py-2 px-3 text-white bg-deep-sky-900 rounded md:bg-transparent md:text-deep-sky-900 md:p-0"
-                   aria-current="page"
-                   th:text="#{section.about}">About</a>
+            <li class="relative group">
+                <a class="flex items-center py-2 px-3 text-white bg-deep-sky-900 rounded md:bg-transparent md:text-deep-sky-900 md:p-0"
+                   href="#">
+                    <span th:text="#{section.about}">About</span>
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         class="w-4 h-4 ml-1 text-gray-400 group-hover:text-deep-sky-900 transition duration-200"
+                         viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                              clip-rule="evenodd"/>
+                    </svg>
+                </a>
+
+                <ul class="absolute hidden group-hover:block mt-0 py-2 bg-white border border-deep-sky-100 rounded-lg shadow-md z-10 left-1/2 -translate-x-1/2">
+                    <li>
+                        <a class="block px-5 py-2 text-deep-sky-900 hover:text-deep-sky-800"
+                           th:text="#{section.about.common}"
+                           href="#">Common information</a>
+                    </li>
+                    <li>
+                        <a class="block px-5 py-2 text-deep-sky-900 hover:text-deep-sky-800"
+                           th:text="#{section.about.partners}"
+                           href="#">Partners</a>
+                    </li>
+                    <li>
+                        <a class="block px-5 py-2 text-deep-sky-900 hover:text-deep-sky-800"
+                           th:text="#{section.about.events}"
+                           th:href="@{/events}">Project events</a>
+                    </li>
+                    <li>
+                        <a class="block px-5 py-2 text-deep-sky-900 hover:text-deep-sky-800"
+                           th:text="#{section.about.monitoring}"
+                           href="#">Monitoring & evaluation</a>
+                    </li>
+                </ul>
             </li>
-            <li>
-                <a href="#"
-                   class="block py-2 px-3 text-deep-sky-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0"
-                   th:text="#{section.education}">Education</a>
+            <li class="relative group">
+                <a class="flex items-center py-2 px-3 text-white bg-deep-sky-900 rounded md:bg-transparent md:text-deep-sky-900 md:p-0"
+                   href="#">
+                    <span th:text="#{section.education}">Education</span>
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         class="w-4 h-4 ml-1 text-gray-400 group-hover:text-deep-sky-900 transition duration-200"
+                         viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                              clip-rule="evenodd"/>
+                    </svg>
+                </a>
+
+                <ul class="absolute hidden group-hover:block mt-0 py-2 bg-white border border-deep-sky-100 rounded-lg shadow-md z-10 left-1/2 -translate-x-1/2">
+                    <li>
+                        <a class="block px-5 py-2 text-deep-sky-900 hover:text-deep-sky-800"
+                           th:text="#{section.education.manuals}"
+                           href="#">Manuals</a>
+                    </li>
+                    <li>
+                        <a class="block px-5 py-2 text-deep-sky-900 hover:text-deep-sky-800"
+                           th:text="#{section.education.speeches}"
+                           th:href="@{/speeches}">Speeches</a>
+                    </li>
+                </ul>
             </li>
             <li>
                 <a href="#"
@@ -41,15 +92,67 @@
                    class="block py-2 px-3 text-deep-sky-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0"
                    th:text="#{section.subgrants}">Subgrants</a>
             </li>
-            <li>
-                <a href="#"
-                   class="block py-2 px-3 text-deep-sky-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0"
-                   th:text="#{section.constructor}">Law Constructor</a>
+            <li class="relative group">
+                <a class="flex items-center py-2 px-3 text-white bg-deep-sky-900 rounded md:bg-transparent md:text-deep-sky-900 md:p-0"
+                   href="#">
+                    <span th:text="#{section.constructor}">Law Constructor</span>
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         class="w-4 h-4 ml-1 text-gray-400 group-hover:text-deep-sky-900 transition duration-200"
+                         viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                              clip-rule="evenodd"/>
+                    </svg>
+                </a>
+
+                <ul class="absolute hidden group-hover:block mt-0 py-2 bg-white border border-deep-sky-100 rounded-lg shadow-md z-10 left-1/2 -translate-x-1/2">
+                    <li>
+                        <a class="block px-5 py-2 text-deep-sky-900 hover:text-deep-sky-800"
+                           th:text="#{section.constructor.consult}"
+                           href="#">Online consultations</a>
+                    </li>
+                    <li>
+                        <a class="block px-5 py-2 text-deep-sky-900 hover:text-deep-sky-800"
+                           th:text="#{section.constructor.documents}"
+                           th:href="@{/docs}">Documents</a>
+                    </li>
+                    <li>
+                        <a class="block px-5 py-2 text-deep-sky-900 hover:text-deep-sky-800"
+                           th:text="#{section.constructor.centers}"
+                           href="#">Public Monitoring Centers</a>
+                    </li>
+                </ul>
             </li>
-            <li>
-                <a href="#"
-                   class="block py-2 px-3 text-deep-sky-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0"
-                   th:text="#{section.informatory}">Informatory</a>
+            <li class="relative group">
+                <a class="flex items-center py-2 px-3 text-white bg-deep-sky-900 rounded md:bg-transparent md:text-deep-sky-900 md:p-0"
+                   href="#">
+                    <span th:text="#{section.informatory}">Informatory</span>
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         class="w-4 h-4 ml-1 text-gray-400 group-hover:text-deep-sky-900 transition duration-200"
+                         viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                              clip-rule="evenodd"/>
+                    </svg>
+                </a>
+
+                <ul class="absolute hidden group-hover:block mt-0 py-2 bg-white border border-deep-sky-100 rounded-lg shadow-md z-10 left-1/2 -translate-x-1/2">
+                    <li>
+                        <a class="block px-5 py-2 text-deep-sky-900 hover:text-deep-sky-800"
+                           th:text="#{section.informatory.publications}"
+                           href="#">Publication</a>
+                    </li>
+                    <li>
+                        <a class="block px-5 py-2 text-deep-sky-900 hover:text-deep-sky-800"
+                           th:text="#{section.informatory.presentations}"
+                           href="#">Presentations</a>
+                    </li>
+                    <li>
+                        <a class="block px-5 py-2 text-deep-sky-900 hover:text-deep-sky-800"
+                           th:text="#{section.informatory.links}"
+                           href="#">Links</a>
+                    </li>
+                </ul>
             </li>
         </ul>
     </div>
