@@ -1,11 +1,13 @@
 package kg.biom.justice.service.impl;
 
+import kg.biom.justice.exception.NotFoundException;
 import kg.biom.justice.model.ContentUtil;
 import kg.biom.justice.model.dto.EventDto;
 import kg.biom.justice.model.entity.EventViewEntity;
 import kg.biom.justice.repository.EventViewRepository;
 import kg.biom.justice.service.EventService;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,6 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Locale;
 
 @Service
@@ -30,6 +33,22 @@ public class EventServiceImpl implements EventService {
     public Page<EventDto> getEvents(int page, int limit, Locale locale) {
         Pageable pageable = PageRequest.of(page, limit, Sort.by(Sort.Direction.DESC, "publishDate"));
         return eventViewRepository.findAllByLang(locale.getLanguage(), pageable).map(this::convertToDto);
+    }
+
+    @Override
+    public List<EventDto> getLatestEvents(Long currentEventId, int limit, Locale locale) {
+        Pageable pageable = PageRequest.of(0, limit, Sort.by(Sort.Direction.DESC, "publishDate"));
+        return eventViewRepository.findAllByLang(locale.getLanguage(), currentEventId, pageable)
+                .map(this::convertToDto)
+                .getContent();
+    }
+
+    @SneakyThrows
+    @Override
+    public EventDto getEvent(String slug, Locale locale) {
+        return eventViewRepository.findBySlug(slug, locale.getLanguage())
+                .map(this::convertToDto)
+                .orElseThrow(() -> new NotFoundException("Event not found with slug: " + slug));
     }
 
     private EventDto convertToDto(EventViewEntity entity) {
@@ -54,6 +73,4 @@ public class EventServiceImpl implements EventService {
 
         return event;
     }
-
-
 }

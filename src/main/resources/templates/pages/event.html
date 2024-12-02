@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru" th:replace="~{layouts/base.html :: base(~{::title}, ~{::main}, _, _)}">
+<head>
+    <title th:text="${event.title} + ' | MJ'">Title</title>
+</head>
+<body>
+<main>
+    <section>
+        <div th:replace="~{fragments/btn/back-btn :: backBtn}"></div>
+    </section>
+    <article class="max-w-screen-md px-4 mx-auto">
+        <div class="text-sm/5 text-gray-700"
+             th:text="${event.publishDate}">01.01.2024
+        </div>
+
+        <h3 th:text="${event.title}"
+            class="text-deep-sky-900 font-bold text-3xl leading-0 mt-6">Title</h3>
+
+        <div class="my-12" th:if="${event.youtubeUrl == null}">
+            <img class="rounded-lg mx-auto"
+                 th:src="${event.thumb}" th:alt="${event.title}"/>
+        </div>
+
+        <div class="my-12" th:if="${event.youtubeUrl != null}">
+            <iframe th:src="${event.youtubeUrl}"
+                    class="w-full aspect-video rounded-lg"
+                    frameborder="0"
+                    allowfullscreen></iframe>
+        </div>
+
+        <div class="text-gray-700 text-lg"
+             th:text="${event.descr}">Description
+        </div>
+
+        <div class="text-gray-700 mt-6"
+             th:utext="${event.content}">Content
+        </div>
+
+        <div class="grid grid-cols-2 gap-8 mt-12"
+             th:if="${(event.agenda != null && !event.agenda.isEmpty()) || (event.press != null && !event.press.isEmpty())}">
+            <div th:if="${event.agenda != null && !event.agenda.isEmpty()}"
+                 th:insert="~{fragments/btn/download-btn :: downloadBtn(#{btn.download.agenda}, ${event.agenda.?[lang == #locale.language][0] ?: event.agenda[0]})}"
+                 class="mt-12"></div>
+
+            <div th:if="${event.press != null && !event.press.isEmpty()}"
+                 th:insert="~{fragments/btn/download-btn :: downloadBtn(#{btn.download.press}, ${event.press.?[lang == #locale.language][0] ?: event.press[0]})}"
+                 class="mt-12"></div>
+        </div>
+    </article>
+
+    <section class="max-w-screen-md px-4 mx-auto mt-20">
+        <h2 th:text="#{label.read.more}"
+            class="text-deep-sky-900 font-bold text-2xl">Read more</h2>
+
+        <th:block th:each="event : ${latestEvents}"
+                  th:insert="~{fragments/card/event-card :: eventHCard(event)}"></th:block>
+    </section>
+</main>
+</body>
+</html>

@@ -46,14 +46,6 @@ public class SpeechController {
     public String getSpeechPage(@PathVariable String slug, Model model, Locale locale) {
         SpeechDto speech = speechService.getSpeech(slug, locale);
         model.addAttribute("speech", speech);
-
-        List<BreadcrumbDto> breadcrumbs = List.of(
-                new BreadcrumbDto(messageSource.getMessage("section.education", null, locale), null),
-                new BreadcrumbDto(messageSource.getMessage("section.education.speeches", null, locale), "/speeches"),
-                new BreadcrumbDto(speech.getTitle(), null)
-        );
-        model.addAttribute("breadcrumbs", breadcrumbs);
-
         return "pages/speech";
     }
 }

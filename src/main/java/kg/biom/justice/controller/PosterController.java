@@ -46,14 +46,6 @@ public class PosterController {
     public String getPosterPage(@PathVariable String slug, Model model, Locale locale) {
         PosterDto poster = posterService.getPoster(slug, locale);
         model.addAttribute("poster", poster);
-
-        List<BreadcrumbDto> breadcrumbs = List.of(
-                new BreadcrumbDto(messageSource.getMessage("section.education", null, locale), null),
-                new BreadcrumbDto(messageSource.getMessage("section.education.speeches", null, locale), "/speeches"),
-                new BreadcrumbDto(poster.getTitle(), null)
-        );
-        model.addAttribute("breadcrumbs", breadcrumbs);
-
         return "pages/poster";
     }
 }

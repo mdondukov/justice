@@ -686,6 +686,10 @@ video {
   margin-inline-start: 0.25rem;
 }
 
+.mt-10 {
+  margin-top: 2.5rem;
+}
+
 .mt-12 {
   margin-top: 3rem;
 }
@@ -879,10 +883,6 @@ video {
   max-width: 1280px;
 }
 
-.max-w-2xl {
-  max-width: 42rem;
-}
-
 .flex-grow {
   flex-grow: 1;
 }
@@ -969,10 +969,6 @@ video {
   overflow: visible;
 }
 
-.overflow-y-auto {
-  overflow-y: auto;
-}
-
 .rounded {
   border-radius: 0.25rem;
 }
@@ -1041,9 +1037,9 @@ video {
   border-color: rgb(224 242 254 / var(--tw-border-opacity));
 }
 
-.border-gray-200 {
-  --tw-border-opacity: 1;
-  border-color: rgb(229 231 235 / var(--tw-border-opacity));
+.bg-blue-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(37 99 235 / var(--tw-bg-opacity));
 }
 
 .bg-clean-orange-900 {
@@ -1104,11 +1100,6 @@ video {
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-
-.bg-blue-600 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(37 99 235 / var(--tw-bg-opacity));
 }
 
 .bg-\[url\(\'\/img\/common\/lib\.jpg\'\)\] {
@@ -1274,6 +1265,10 @@ video {
   line-height: 1.5rem;
 }
 
+.leading-normal {
+  line-height: 1.5;
+}
+
 .leading-tight {
   line-height: 1.25;
 }
@@ -1302,6 +1297,11 @@ video {
   color: rgb(107 114 128 / var(--tw-text-opacity));
 }
 
+.text-gray-600 {
+  --tw-text-opacity: 1;
+  color: rgb(75 85 99 / var(--tw-text-opacity));
+}
+
 .text-gray-700 {
   --tw-text-opacity: 1;
   color: rgb(55 65 81 / var(--tw-text-opacity));
@@ -1315,11 +1315,6 @@ video {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
-.text-gray-600 {
-  --tw-text-opacity: 1;
-  color: rgb(75 85 99 / var(--tw-text-opacity));
 }
 
 .bg-blend-multiply {
@@ -1376,9 +1371,22 @@ body {
   z-index: 20;
 }
 
+article p {
+  margin-bottom: 1.5rem;
+}
+
+article p:last-child {
+  margin-bottom: 0;
+}
+
 .hover\:border-gray-300:hover {
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
+}
+
+.hover\:bg-blue-700:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(29 78 216 / var(--tw-bg-opacity));
 }
 
 .hover\:bg-clean-orange-800:hover {
@@ -1399,11 +1407,6 @@ body {
 .hover\:bg-sky-100:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(224 242 254 / var(--tw-bg-opacity));
-}
-
-.hover\:bg-blue-700:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(29 78 216 / var(--tw-bg-opacity));
 }
 
 .hover\:text-deep-sky-800:hover {
@@ -1486,8 +1489,16 @@ body {
     display: none;
   }
 
+  .md\:h-auto {
+    height: auto;
+  }
+
   .md\:w-4\/12 {
     width: 33.333333%;
+  }
+
+  .md\:w-48 {
+    width: 12rem;
   }
 
   .md\:w-8\/12 {

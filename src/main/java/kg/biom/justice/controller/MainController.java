@@ -20,7 +20,7 @@ import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
-public class HomeController {
+public class MainController {
     private final EventService eventService;
     private final SpeechService speechService;
     private final PosterService posterService;
