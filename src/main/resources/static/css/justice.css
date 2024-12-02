@@ -883,6 +883,10 @@ video {
   max-width: 1280px;
 }
 
+.max-w-screen-lg {
+  max-width: 1024px;
+}
+
 .flex-grow {
   flex-grow: 1;
 }
@@ -941,6 +945,10 @@ video {
 
 .gap-8 {
   gap: 2rem;
+}
+
+.gap-12 {
+  gap: 3rem;
 }
 
 .-space-x-px > :not([hidden]) ~ :not([hidden]) {

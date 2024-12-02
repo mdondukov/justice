@@ -29,7 +29,7 @@ public class MainController {
     @Value("${content.home.limit.default}")
     private int defaultLimit;
 
-    @Value("${content.home.limit.documents}")
+    @Value("${content.documents.limit.home}")
     private int documentsLimit;
 
     @GetMapping("/")
@@ -39,12 +39,19 @@ public class MainController {
         documentService.getDocument(1L, locale).ifPresent(manual -> model.addAttribute("manual", manual));
 
         Map<String, List<DocumentDto>> documents = new HashMap<>();
-        documents.put(ActivityCode.ECOLOGY.name(), documentService.getDocuments(DocumentType.LEGAL_DOCUMENT, 1L, documentsLimit, locale));
-        documents.put(ActivityCode.GENDER.name(), documentService.getDocuments(DocumentType.LEGAL_DOCUMENT, 2L, documentsLimit, locale));
-        documents.put(ActivityCode.PRIVACY.name(), documentService.getDocuments(DocumentType.LEGAL_DOCUMENT, 3L, documentsLimit, locale));
+
+        documents.put(ActivityCode.ECOLOGY.name(),
+                documentService.getDocuments(DocumentType.LEGAL_DOCUMENT, 1L, 0, documentsLimit, locale).getContent());
+
+        documents.put(ActivityCode.GENDER.name(),
+                documentService.getDocuments(DocumentType.LEGAL_DOCUMENT, 2L, 0, documentsLimit, locale).getContent());
+
+        documents.put(ActivityCode.PRIVACY.name(),
+                documentService.getDocuments(DocumentType.LEGAL_DOCUMENT, 3L, 0, documentsLimit, locale).getContent());
+
         model.addAttribute("documents", documents);
 
-        model.addAttribute("analytics", documentService.getDocuments(DocumentType.ANALYTICS, defaultLimit, locale));
+        model.addAttribute("analytics", documentService.getDocuments(DocumentType.ANALYTICS, 0, defaultLimit, locale).getContent());
         model.addAttribute("posters", posterService.getPosters(0, defaultLimit, locale).getContent());
         return "pages/home";
     }

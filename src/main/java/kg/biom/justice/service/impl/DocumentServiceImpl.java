@@ -9,6 +9,7 @@ import kg.biom.justice.repository.DocumentViewRepository;
 import kg.biom.justice.service.DocumentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -25,19 +26,17 @@ public class DocumentServiceImpl implements DocumentService {
     private String basePath;
 
     @Override
-    public List<DocumentDto> getDocuments(DocumentType type, int limit, Locale locale) {
-        Pageable pageable = PageRequest.of(0, limit, Sort.by(Sort.Direction.ASC, "ord"));
-        return documentViewRepository.findAllByType(type, locale.getLanguage(), pageable).stream()
-                .map(this::convertToDto)
-                .toList();
+    public Page<DocumentDto> getDocuments(DocumentType type, int page, int limit, Locale locale) {
+        Pageable pageable = PageRequest.of(page, limit, Sort.by(Sort.Direction.ASC, "ord"));
+        return documentViewRepository.findAllByType(type, locale.getLanguage(), pageable)
+                .map(this::convertToDto);
     }
 
     @Override
-    public List<DocumentDto> getDocuments(DocumentType type, Long activityId, int limit, Locale locale) {
-        Pageable pageable = PageRequest.of(0, limit, Sort.by(Sort.Direction.ASC, "ord"));
-        return documentViewRepository.findAllByTypeAndActivityId(type, activityId, locale.getLanguage(), pageable).stream()
-                .map(this::convertToDto)
-                .toList();
+    public Page<DocumentDto> getDocuments(DocumentType type, Long activityId, int page, int limit, Locale locale) {
+        Pageable pageable = PageRequest.of(page, limit, Sort.by(Sort.Direction.ASC, "ord"));
+        return documentViewRepository.findAllByTypeAndActivityId(type, activityId, locale.getLanguage(), pageable)
+                .map(this::convertToDto);
     }
 
     @Override

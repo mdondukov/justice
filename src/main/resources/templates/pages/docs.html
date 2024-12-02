@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ru" th:replace="~{layouts/base.html :: base(~{::title}, ~{::main}, _, _)}">
+<head>
+    <title th:text="#{section.about.events} + ' | MJ'">Title</title>
+</head>
+<body>
+<main>
+    <div th:replace="~{fragments/section-head :: base(#{section.constructor.documents}, ${breadcrumbs})}"></div>
+
+    <section class="max-w-screen-xl px-4 mt-12 mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+            <th:block th:each="document : ${docsPage.content}"
+                      th:include="~{fragments/card/document-h-card.html :: documentHCard(document)}"></th:block>
+        </div>
+
+        <div th:replace="~{fragments/nav/pagination :: pagination(${currentPage}, ${docsPage.totalPages}, '/docs')}"></div>
+    </section>
+</main>
+</body>
+</html>

@@ -27,9 +27,23 @@ user:
   default: "user@biom.kg"
 
 content:
-  items:
-    count: 3
+  home:
+    limit:
+      default: 3
+  events:
+    limit:
+      page: 12
+  speeches:
+    limit:
+      page: 12
+  documents:
+    limit:
+      page: 16
+      home: 8
+  posters:
+    limit:
+      page: 12
   base:
-    path: "https://justice.biom.kg/upload"
+    path: "http://localhost:9196/upload"
   date:
     pattern: "dd.MM.yyyy"
