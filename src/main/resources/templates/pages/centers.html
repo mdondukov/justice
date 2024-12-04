@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="ru" th:replace="~{layouts/base.html :: base(~{::title}, ~{::main}, _, _)}">
+<head>
+    <title th:text="#{section.constructor.centers} + ' | MJ'">Title</title>
+</head>
+<body>
+<main>
+    <div th:replace="~{fragments/section-head :: base(#{section.constructor.centers}, ${breadcrumbs})}"></div>
+
+    <div th:replace="~{fragments/under-construction}"></div>
+</main>
+</body>
+</html>

@@ -37,12 +37,12 @@
                     <li>
                         <a class="block px-5 py-2 text-deep-sky-900 hover:text-deep-sky-800"
                            th:text="#{section.about.common}"
-                           href="#">Common information</a>
+                           th:href="@{/about}">Common information</a>
                     </li>
                     <li>
                         <a class="block px-5 py-2 text-deep-sky-900 hover:text-deep-sky-800"
                            th:text="#{section.about.partners}"
-                           href="#">Partners</a>
+                           th:href="@{/about/partners}">Partners</a>
                     </li>
                     <li>
                         <a class="block px-5 py-2 text-deep-sky-900 hover:text-deep-sky-800"
@@ -52,7 +52,7 @@
                     <li>
                         <a class="block px-5 py-2 text-deep-sky-900 hover:text-deep-sky-800"
                            th:text="#{section.about.monitoring}"
-                           href="#">Monitoring & evaluation</a>
+                           th:href="@{/about/monitoring}">Monitoring & evaluation</a>
                     </li>
                 </ul>
             </li>
@@ -73,7 +73,7 @@
                     <li>
                         <a class="block px-5 py-2 text-deep-sky-900 hover:text-deep-sky-800"
                            th:text="#{section.education.manuals}"
-                           href="#">Manuals</a>
+                           th:href="@{/education/manuals}">Manuals</a>
                     </li>
                     <li>
                         <a class="block px-5 py-2 text-deep-sky-900 hover:text-deep-sky-800"
@@ -83,12 +83,12 @@
                 </ul>
             </li>
             <li>
-                <a href="#"
+                <a th:href="@{/analytics}"
                    class="block py-2 px-3 text-deep-sky-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0"
                    th:text="#{section.analytics}">Analytics</a>
             </li>
             <li>
-                <a href="#"
+                <a th:href="@{/subgrants}"
                    class="block py-2 px-3 text-deep-sky-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0"
                    th:text="#{section.subgrants}">Subgrants</a>
             </li>
@@ -109,7 +109,7 @@
                     <li>
                         <a class="block px-5 py-2 text-deep-sky-900 hover:text-deep-sky-800"
                            th:text="#{section.constructor.consult}"
-                           href="#">Online consultations</a>
+                           th:href="@{/constructor/consult}">Online consultations</a>
                     </li>
                     <li>
                         <a class="block px-5 py-2 text-deep-sky-900 hover:text-deep-sky-800"
@@ -119,7 +119,7 @@
                     <li>
                         <a class="block px-5 py-2 text-deep-sky-900 hover:text-deep-sky-800"
                            th:text="#{section.constructor.centers}"
-                           href="#">Public Monitoring Centers</a>
+                           th:href="@{/constructor/centers}">Public Monitoring Centers</a>
                     </li>
                 </ul>
             </li>
@@ -140,17 +140,17 @@
                     <li>
                         <a class="block px-5 py-2 text-deep-sky-900 hover:text-deep-sky-800"
                            th:text="#{section.informatory.publications}"
-                           href="#">Publication</a>
+                           th:href="@{/informatory/publications}">Publication</a>
                     </li>
                     <li>
                         <a class="block px-5 py-2 text-deep-sky-900 hover:text-deep-sky-800"
                            th:text="#{section.informatory.presentations}"
-                           href="#">Presentations</a>
+                           th:href="@{/informatory/presentations}">Presentations</a>
                     </li>
                     <li>
                         <a class="block px-5 py-2 text-deep-sky-900 hover:text-deep-sky-800"
                            th:text="#{section.informatory.links}"
-                           href="#">Links</a>
+                           th:href="@{/informatory/links}">Links</a>
                     </li>
                 </ul>
             </li>
@@ -169,11 +169,11 @@
             <ul>
                 <li class="pb-4">
                     <a th:text="#{section.about.common}"
-                       href="#">Common information</a>
+                       th:href="@{/about}">Common information</a>
                 </li>
                 <li class="pb-4">
                     <a th:text="#{section.about.partners}"
-                       href="#">Partners</a>
+                       th:href="@{/about/partners}">Partners</a>
                 </li>
                 <li class="pb-4">
                     <a th:text="#{section.about.events}"
@@ -181,7 +181,7 @@
                 </li>
                 <li class="pb-4">
                     <a th:text="#{section.about.monitoring}"
-                       href="#">Monitoring & evaluation</a>
+                       th:href="@{/about/monitoring}">Monitoring & evaluation</a>
                 </li>
             </ul>
         </div>
@@ -190,17 +190,17 @@
             <ul>
                 <li class="pb-4">
                     <a th:text="#{section.education.manuals}"
-                       href="#">Manuals</a>
+                       th:href="@{/education/manuals}">Manuals</a>
                 </li>
                 <li class="pb-4">
                     <a th:text="#{section.education.speeches}"
                        th:href="@{/speeches}">Speeches</a>
                 </li>
             </ul>
-            <a href="#">
+            <a th:href="@{/analytics}">
                 <h4 th:text="#{section.analytics}" class="text-lg font-bold mb-4">Analytics</h4>
             </a>
-            <a href="#">
+            <a th:href="@{/subgrants}">
                 <h4 th:text="#{section.subgrants}" class="text-lg font-bold mb-4">Subgrants</h4>
             </a>
         </div>
@@ -209,7 +209,7 @@
             <ul>
                 <li class="pb-4">
                     <a th:text="#{section.constructor.consult}"
-                       href="#">Online consultations</a>
+                       th:href="@{/constructor/consult}">Online consultations</a>
                 </li>
                 <li class="pb-4">
                     <a th:text="#{section.constructor.documents}"
@@ -217,7 +217,7 @@
                 </li>
                 <li class="pb-4">
                     <a th:text="#{section.constructor.centers}"
-                       href="#">Public Monitoring Centers</a>
+                       th:href="@{/constructor/centers}">Public Monitoring Centers</a>
                 </li>
             </ul>
         </div>
@@ -226,15 +226,15 @@
             <ul>
                 <li class="pb-4">
                     <a th:text="#{section.informatory.publications}"
-                       href="#">Publication</a>
+                       th:href="@{/informatory/publications}">Publication</a>
                 </li>
                 <li class="pb-4">
                     <a th:text="#{section.informatory.presentations}"
-                       href="#">Presentations</a>
+                       th:href="@{/informatory/presentations}">Presentations</a>
                 </li>
                 <li class="pb-4">
                     <a th:text="#{section.informatory.links}"
-                       href="#">Links</a>
+                       th:href="@{/informatory/links}">Links</a>
                 </li>
             </ul>
         </div>

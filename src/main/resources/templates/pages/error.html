@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ru" th:replace="~{layouts/base.html :: base(~{::title}, ~{::main}, _, _)}">
+<head>
+    <title th:text="${error.code} + ' | MJ'">Title</title>
+</head>
+<body>
+<main>
+    <div class="flex flex-auto items-center justify-center text-center px-4 flex-col sm:flex-row h-96">
+        <h1 class="text-2xl font-bold text-deep-sky-900 sm:pr-6 sm:mr-6 sm:border-r sm:border-gray-200"
+            th:text="${error.code}">000</h1>
+        <h2 class="mt-2 text-lg text-gray-700 sm:mt-0"
+            th:text="${error.message}">Error message</h2>
+    </div>
+</main>
+</body>
+</html>
