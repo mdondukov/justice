@@ -43,6 +43,9 @@ public class AboutController {
 
     @GetMapping("/partners")
     public String partners(Model model, Locale locale) {
+        PageDto page = pageService.getPage("partners", locale);
+        model.addAttribute("data", page.getContent());
+
         List<BreadcrumbDto> breadcrumbs = List.of(
                 new BreadcrumbDto(messageSource.getMessage("section.about", null, locale), "/about"),
                 new BreadcrumbDto(messageSource.getMessage("section.about.partners", null, locale), null)

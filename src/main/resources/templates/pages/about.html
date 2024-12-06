@@ -53,7 +53,7 @@
 
         <div class="grid grid-cols-3 gap-4">
             <div class="card-stat h-full flex flex-col justify-between"
-                 th:each="card, iter : ${data.duration.cards}"
+                 th:each="card : ${data.duration.cards}"
                  th:classappend="${card.className}">
 
                 <p class="mt-auto text-xl font-medium leading-tight text-white"
@@ -77,7 +77,7 @@
                 </div>
 
                 <h5 class="mt-auto text-xl font-medium leading-tight text-deep-sky-900 mb-2"
-                    th:utext="${card.title}">Content</h5>
+                    th:utext="${card.title}">Title</h5>
 
                 <p th:text="${card.content}"
                    class="text-lg text-deep-sky-900 font-light leading-1">Content</p>
