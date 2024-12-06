@@ -18,7 +18,8 @@
                 <p th:text="${data.goal.content}"
                    class="text-xl text-deep-sky-900 font-light leading-1">Content</p>
 
-                <div th:insert="~{fragments/btn/download-btn :: downloadBtn(#{btn.download.booklet}, ${booklet})}"
+                <div th:if="${booklet != null}"
+                     th:insert="~{fragments/btn/download-btn :: downloadBtn(#{btn.download.booklet}, ${booklet})}"
                      class="mt-6"></div>
             </div>
         </div>
@@ -35,6 +36,7 @@
                      th:each="card : ${data.groups.cards}">
 
                     <img th:src="@{'/img/common/' + ${card.icon} + '.svg'}"
+                         th:alt="${card.icon}"
                          class="w-[40px] h-[40px] mb-8"/>
 
                     <h5 class="mt-auto text-xl font-medium leading-tight text-deep-sky-900"

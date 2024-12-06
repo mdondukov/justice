@@ -27,7 +27,7 @@ public class AboutController {
         PageDto page = pageService.getPage("about", locale);
         model.addAttribute("data", page.getContent());
 
-        documentService.getDocument(1L, locale)
+        documentService.getDocument(70L, locale)
                 .flatMap(document -> document.getFiles().stream()
                         .filter(file -> file.getLang().equals(locale.getLanguage()))
                         .findFirst())
