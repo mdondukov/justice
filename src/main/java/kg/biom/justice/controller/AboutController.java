@@ -1,6 +1,9 @@
 package kg.biom.justice.controller;
 
 import kg.biom.justice.model.dto.BreadcrumbDto;
+import kg.biom.justice.model.dto.PageDto;
+import kg.biom.justice.service.DocumentService;
+import kg.biom.justice.service.PageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -16,9 +19,20 @@ import java.util.Locale;
 @RequiredArgsConstructor
 public class AboutController {
     private final MessageSource messageSource;
+    private final PageService pageService;
+    private final DocumentService documentService;
 
     @GetMapping
     public String about(Model model, Locale locale) {
+        PageDto page = pageService.getPage("about", locale);
+        model.addAttribute("data", page.getContent());
+
+        documentService.getDocument(1L, locale)
+                .flatMap(document -> document.getFiles().stream()
+                        .filter(file -> file.getLang().equals(locale.getLanguage()))
+                        .findFirst())
+                .ifPresent(document -> model.addAttribute("booklet", document));
+
         List<BreadcrumbDto> breadcrumbs = List.of(
                 new BreadcrumbDto(messageSource.getMessage("section.about", null, locale), null)
         );

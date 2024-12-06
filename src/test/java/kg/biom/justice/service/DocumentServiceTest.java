@@ -23,7 +23,7 @@ class DocumentServiceTest {
     void getDocuments() {
         var locale = Locale.forLanguageTag(defaultLocale);
         var result = assertDoesNotThrow(() ->
-                documentService.getDocuments(DocumentType.ANALYTICS, 3, locale));
+                documentService.getDocuments(DocumentType.ANALYTICS, 0, 3, locale));
 
         result.forEach(System.out::println);
     }

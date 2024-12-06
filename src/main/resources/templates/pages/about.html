@@ -5,9 +5,105 @@
 </head>
 <body>
 <main>
-    <div th:replace="~{fragments/section-head :: base(#{section.about}, ${breadcrumbs})}"></div>
+    <div th:replace="~{fragments/section-head :: picture(#{section.about}, ${data.project.title}, ${breadcrumbs}, @{/img/pages/column.jpg})}"></div>
 
-    <div th:replace="~{fragments/under-construction}"></div>
+    <!-- Goal -->
+    <section class="max-w-screen-xl px-4 my-20 mx-auto">
+        <div class="grid grid-cols-2 gap-8">
+            <div>
+                <h2 th:text="${data.goal.title}"
+                    class="uppercase text-deep-sky-900 font-bold text-5xl leading-0">Title</h2>
+            </div>
+            <div>
+                <p th:text="${data.goal.content}"
+                   class="text-xl text-deep-sky-900 font-light leading-1">Content</p>
+
+                <div th:insert="~{fragments/btn/download-btn :: downloadBtn(#{btn.download.booklet}, ${booklet})}"
+                     class="mt-6"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Groups -->
+    <section class="bg-deep-sky-50">
+        <div class="max-w-screen-xl px-4 py-20 mx-auto">
+            <h2 th:text="${data.groups.title}"
+                class="uppercase text-deep-sky-900 font-bold text-5xl mb-10">Title</h2>
+
+            <div class="grid grid-cols-3 gap-4">
+                <div class="bg-white border border-deep-sky-100 rounded-lg h-full flex flex-col justify-between p-7"
+                     th:each="card : ${data.groups.cards}">
+
+                    <img th:src="@{'/img/common/' + ${card.icon} + '.svg'}"
+                         class="w-[40px] h-[40px] mb-8"/>
+
+                    <h5 class="mt-auto text-xl font-medium leading-tight text-deep-sky-900"
+                        th:utext="${card.contentRaw}">Content</h5>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Duration -->
+    <section class="max-w-screen-xl px-4 mt-20 mx-auto">
+        <h2 th:text="${data.duration.title}"
+            class="uppercase text-deep-sky-900 font-bold text-5xl mb-10">Activities</h2>
+
+        <div class="grid grid-cols-3 gap-4">
+            <div class="card-stat h-full flex flex-col justify-between"
+                 th:each="card, iter : ${data.duration.cards}"
+                 th:classappend="${card.className}">
+
+                <p class="mt-auto text-xl font-medium leading-tight text-white"
+                   th:utext="${card.contentRaw}">Content</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project activities -->
+    <section class="max-w-screen-xl px-4 mt-20 mx-auto">
+        <h2 th:text="${data.acts.title}"
+            class="uppercase text-deep-sky-900 font-bold text-5xl mb-10">Title</h2>
+
+        <div class="grid grid-cols-2 gap-4">
+            <div class="bg-deep-sky-50 border border-deep-sky-100 rounded-lg h-full flex flex-col justify-between p-7"
+                 th:each="card : ${data.acts.cards}">
+
+                <div class="flex items-center justify-center w-12 h-12 rounded-full border-2 border-deep-sky-900  mb-8">
+                    <i class="fa-solid text-deep-sky-900 text-xl"
+                       th:classappend="${card.icon}"></i>
+                </div>
+
+                <h5 class="mt-auto text-xl font-medium leading-tight text-deep-sky-900 mb-2"
+                    th:utext="${card.title}">Content</h5>
+
+                <p th:text="${card.content}"
+                   class="text-lg text-deep-sky-900 font-light leading-1">Content</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results -->
+    <section class="max-w-screen-xl px-4 mt-20 mx-auto">
+        <h2 th:text="${data.results.title}"
+            class="uppercase text-deep-sky-900 font-bold text-5xl mb-10">Activities</h2>
+
+        <div class="grid grid-cols-2 gap-4">
+            <div class="bg-white border border-deep-sky-100 rounded-lg h-full flex flex-col justify-between p-7"
+                 th:each="card, iter : ${data.results.cards}">
+
+                <div class="flex items-start mb-8">
+                    <div class="flex items-center justify-center w-12 h-12 rounded-full bg-clean-orange-900">
+                        <span class="text-white text-lg font-medium"
+                              th:text="${iter.index + 1}">1</span>
+                    </div>
+                </div>
+
+                <p th:text="${card.content}"
+                   class="text-lg text-deep-sky-900 font-light leading-1">Content</p>
+            </div>
+        </div>
+    </section>
 </main>
 </body>
 </html>

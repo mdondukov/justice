@@ -3,10 +3,26 @@
              class="bg-deep-sky-50 border border-deep-sky-100">
 
         <div class="max-w-screen-xl px-4 py-20 mx-auto">
-            <h2 class="uppercase text-deep-sky-900 font-bold text-6xl"
+            <h2 class="uppercase text-deep-sky-900 font-bold text-7xl"
                 th:text="${title}">Title</h2>
 
-            <nav th:replace="~{fragments/nav/breadcrumb :: breadcrumbList(${breadcrumbs})}"></nav>
+            <nav th:replace="~{fragments/nav/breadcrumb :: breadcrumbList(${breadcrumbs}, false)}"></nav>
+        </div>
+    </section>
+
+    <section th:fragment="picture(title, descr, breadcrumbs, imagePath)"
+             class="bg-center bg-no-repeat bg-gray-400 bg-blend-multiply"
+             th:style="|background-image: url('${imagePath}');|">
+
+        <div class="px-4 mx-auto max-w-screen-xl py-40">
+            <h2 class="uppercase font-bold text-7xl text-white"
+                th:utext="${title}">Title</h2>
+
+            <p th:if="${descr != null}"
+               th:text="${descr}"
+               class=" text-xl text-white font-light leading-0 mt-6 md:w-6/12">Descr</p>
+
+            <nav th:replace="~{fragments/nav/breadcrumb :: breadcrumbList(${breadcrumbs}, true)}"></nav>
         </div>
     </section>
 </main>
