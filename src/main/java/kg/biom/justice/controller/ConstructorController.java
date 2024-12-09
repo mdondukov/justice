@@ -27,15 +27,4 @@ public class ConstructorController {
 
         return "pages/consult";
     }
-
-    @GetMapping("/centers")
-    public String centers(Model model, Locale locale) {
-        List<BreadcrumbDto> breadcrumbs = List.of(
-                new BreadcrumbDto(messageSource.getMessage("section.constructor", null, locale), null),
-                new BreadcrumbDto(messageSource.getMessage("section.constructor.centers", null, locale), null)
-        );
-        model.addAttribute("breadcrumbs", breadcrumbs);
-
-        return "pages/centers";
-    }
 }

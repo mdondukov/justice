@@ -55,6 +55,26 @@ public class AboutController {
         return "pages/partners";
     }
 
+    @GetMapping("/centers")
+    public String centers(Model model, Locale locale) {
+        PageDto page = pageService.getPage("centers", locale);
+        model.addAttribute("data", page.getContent());
+
+        documentService.getDocument(70L, locale)
+                .flatMap(document -> document.getFiles().stream()
+                        .filter(file -> file.getLang().equals(locale.getLanguage()))
+                        .findFirst())
+                .ifPresent(document -> model.addAttribute("booklet", document));
+
+        List<BreadcrumbDto> breadcrumbs = List.of(
+                new BreadcrumbDto(messageSource.getMessage("section.about", null, locale), "/about"),
+                new BreadcrumbDto(messageSource.getMessage("section.about.centers", null, locale), null)
+        );
+        model.addAttribute("breadcrumbs", breadcrumbs);
+
+        return "pages/centers";
+    }
+
     @GetMapping("/monitoring")
     public String monitoring(Model model, Locale locale) {
         List<BreadcrumbDto> breadcrumbs = List.of(

@@ -51,6 +51,11 @@
                     </li>
                     <li>
                         <a class="block px-5 py-2 text-deep-sky-900 hover:text-deep-sky-800"
+                           th:text="#{section.about.centers}"
+                           th:href="@{/about/centers}">Public Monitoring Centers</a>
+                    </li>
+                    <li>
+                        <a class="block px-5 py-2 text-deep-sky-900 hover:text-deep-sky-800"
                            th:text="#{section.about.monitoring}"
                            th:href="@{/about/monitoring}">Monitoring & evaluation</a>
                     </li>
@@ -116,11 +121,6 @@
                            th:text="#{section.constructor.documents}"
                            th:href="@{/docs}">Documents</a>
                     </li>
-                    <li>
-                        <a class="block px-5 py-2 text-deep-sky-900 hover:text-deep-sky-800"
-                           th:text="#{section.constructor.centers}"
-                           th:href="@{/constructor/centers}">Public Monitoring Centers</a>
-                    </li>
                 </ul>
             </li>
             <li class="relative group">
@@ -180,6 +180,10 @@
                        th:href="@{/events}">Project events</a>
                 </li>
                 <li class="pb-4">
+                    <a th:text="#{section.about.centers}"
+                       th:href="@{/about/centers}">Public Monitoring Centers</a>
+                </li>
+                <li class="pb-4">
                     <a th:text="#{section.about.monitoring}"
                        th:href="@{/about/monitoring}">Monitoring & evaluation</a>
                 </li>
@@ -214,10 +218,6 @@
                 <li class="pb-4">
                     <a th:text="#{section.constructor.documents}"
                        th:href="@{/docs}">Documents</a>
-                </li>
-                <li class="pb-4">
-                    <a th:text="#{section.constructor.centers}"
-                       th:href="@{/constructor/centers}">Public Monitoring Centers</a>
                 </li>
             </ul>
         </div>
