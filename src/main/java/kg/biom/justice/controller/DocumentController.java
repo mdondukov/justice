@@ -34,8 +34,7 @@ public class DocumentController {
         model.addAttribute("currentPage", page);
 
         List<BreadcrumbDto> breadcrumbs = List.of(
-                new BreadcrumbDto(messageSource.getMessage("section.constructor", null, locale), null),
-                new BreadcrumbDto(messageSource.getMessage("section.constructor.documents", null, locale), null)
+                new BreadcrumbDto(messageSource.getMessage("section.constructor", null, locale), null)
         );
         model.addAttribute("breadcrumbs", breadcrumbs);
 

@@ -34,8 +34,7 @@ public class EventController {
         model.addAttribute("currentPage", page);
 
         List<BreadcrumbDto> breadcrumbs = List.of(
-                new BreadcrumbDto(messageSource.getMessage("section.about", null, locale), "/about"),
-                new BreadcrumbDto(messageSource.getMessage("section.about.events", null, locale), null)
+                new BreadcrumbDto(messageSource.getMessage("section.about", null, locale), "/about")
         );
         model.addAttribute("breadcrumbs", breadcrumbs);
 

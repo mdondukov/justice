@@ -1,5 +1,6 @@
 <nav>
-    <button th:fragment="mobile" data-collapse-toggle="navbar-default"
+    <button th:fragment="mobile"
+            data-collapse-toggle="navbar-default"
             type="button"
             class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-200"
             aria-controls="navbar-default"
@@ -18,7 +19,7 @@
         </svg>
     </button>
 
-    <div th:fragment="main" class="hidden w-full md:block md:w-auto" id="navbar-default">
+    <div th:fragment="main" class="w-full md:block md:w-auto" id="navbar-default">
         <ul class="uppercase text-xs flex flex-col p-4 md:p-0 mt-4 border border-sky-100 rounded-lg bg-sky-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white">
             <li class="relative group">
                 <a class="flex items-center py-2 px-3 text-white bg-deep-sky-900 rounded md:bg-transparent md:text-deep-sky-900 md:p-0"
@@ -157,9 +158,11 @@
         </ul>
     </div>
 
-    <div th:fragment="tools" class="ml-6 text-deep-sky-900">
-        <i class="fa-regular fa-magnifying-glass"></i>
-    </div>
+    <button th:fragment="tools"
+            class="md:ml-6 text-deep-sky-900 p-2 w-10 h-10"
+            type="button">
+        <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
 </nav>
 
 <div th:fragment="bottom" class="w-full md:w-8/12">

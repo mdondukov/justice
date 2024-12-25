@@ -3,10 +3,12 @@
              class="bg-deep-sky-50 border border-deep-sky-100">
 
         <div class="max-w-screen-xl px-4 py-20 mx-auto">
-            <h2 class="uppercase text-deep-sky-900 font-bold text-7xl"
+            <h2 class="uppercase text-deep-sky-900 font-bold md:text-7xl text-4xl"
                 th:text="${title}">Title</h2>
 
-            <nav th:replace="~{fragments/nav/breadcrumb :: breadcrumbList(${breadcrumbs}, false)}"></nav>
+            <div th:if="${!#lists.isEmpty(breadcrumbs)}">
+                <nav th:replace="~{fragments/nav/breadcrumb :: breadcrumbList(${breadcrumbs}, false)}"></nav>
+            </div>
         </div>
     </section>
 
@@ -14,15 +16,17 @@
              class="bg-center bg-no-repeat bg-gray-400 bg-blend-multiply"
              th:style="|background-image: url('${imagePath}');|">
 
-        <div class="px-4 mx-auto max-w-screen-xl py-40">
-            <h2 class="uppercase font-bold text-7xl text-white"
+        <div class="px-4 mx-auto max-w-screen-xl md:py-40 py-20 ">
+            <h2 class="uppercase font-bold md:text-7xl text-4xl text-white"
                 th:utext="${title}">Title</h2>
 
             <p th:if="${descr != null}"
                th:text="${descr}"
-               class=" text-xl text-white font-light leading-0 mt-6 md:w-6/12">Descr</p>
+               class=" md:text-xl text-lg text-white font-light leading-0 mt-6 md:w-6/12">Descr</p>
 
-            <nav th:replace="~{fragments/nav/breadcrumb :: breadcrumbList(${breadcrumbs}, true)}"></nav>
+            <div th:if="${!#lists.isEmpty(breadcrumbs)}">
+                <nav th:replace="~{fragments/nav/breadcrumb :: breadcrumbList(${breadcrumbs}, true)}"></nav>
+            </div>
         </div>
     </section>
 </main>

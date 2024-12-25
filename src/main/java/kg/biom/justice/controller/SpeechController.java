@@ -34,8 +34,7 @@ public class SpeechController {
         model.addAttribute("currentPage", page);
 
         List<BreadcrumbDto> breadcrumbs = List.of(
-                new BreadcrumbDto(messageSource.getMessage("section.education", null, locale), null),
-                new BreadcrumbDto(messageSource.getMessage("section.education.speeches", null, locale), null)
+                new BreadcrumbDto(messageSource.getMessage("section.education", null, locale), null)
         );
         model.addAttribute("breadcrumbs", breadcrumbs);
 

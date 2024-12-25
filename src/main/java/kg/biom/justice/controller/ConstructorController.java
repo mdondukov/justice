@@ -20,8 +20,7 @@ public class ConstructorController {
     @GetMapping("/consult")
     public String consult(Model model, Locale locale) {
         List<BreadcrumbDto> breadcrumbs = List.of(
-                new BreadcrumbDto(messageSource.getMessage("section.constructor", null, locale), null),
-                new BreadcrumbDto(messageSource.getMessage("section.constructor.consult", null, locale), null)
+                new BreadcrumbDto(messageSource.getMessage("section.constructor", null, locale), null)
         );
         model.addAttribute("breadcrumbs", breadcrumbs);
 

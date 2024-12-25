@@ -20,8 +20,7 @@ public class EducationController {
     @GetMapping("/manuals")
     public String about(Model model, Locale locale) {
         List<BreadcrumbDto> breadcrumbs = List.of(
-                new BreadcrumbDto(messageSource.getMessage("section.education", null, locale), null),
-                new BreadcrumbDto(messageSource.getMessage("section.education.manuals", null, locale), null)
+                new BreadcrumbDto(messageSource.getMessage("section.education", null, locale), null)
         );
         model.addAttribute("breadcrumbs", breadcrumbs);
 

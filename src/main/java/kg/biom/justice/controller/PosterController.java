@@ -34,8 +34,7 @@ public class PosterController {
         model.addAttribute("currentPage", page);
 
         List<BreadcrumbDto> breadcrumbs = List.of(
-                new BreadcrumbDto(messageSource.getMessage("section.education", null, locale), null),
-                new BreadcrumbDto(messageSource.getMessage("section.education.posters", null, locale), null)
+                new BreadcrumbDto(messageSource.getMessage("section.education", null, locale), null)
         );
         model.addAttribute("breadcrumbs", breadcrumbs);
 

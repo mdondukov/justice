@@ -4,8 +4,8 @@
 <body>
 <main>
     <!-- Partners -->
-    <section class="max-w-screen-xl px-4 mx-auto">
-        <div class="flex flex-wrap items-center justify-end gap-4">
+    <section class="max-w-screen-xl px-4 mx-auto md:mt-0 mt-2">
+        <div class="flex flex-wrap items-center md:justify-end gap-4">
             <a href="https://kas.de" target="_blank">
                 <img src="/img/brand/kas.png" class="w-[82px]" alt="KAS"/></a>
             <a href="https://biom.kg" target="_blank">
@@ -32,8 +32,9 @@
     <!-- Activities -->
     <section class="max-w-screen-xl px-4 mt-20 mx-auto">
         <h2 th:text="#{home.section.about.activities}"
-            class="uppercase text-deep-sky-900 font-bold text-5xl mb-10">Activities</h2>
-        <div class="grid grid-cols-3 gap-8">
+            class="uppercase text-deep-sky-900 font-bold md:text-5xl text-3xl mb-10">Activities</h2>
+
+        <div class="grid md:grid-cols-3 grid-cols-1 gap-8">
             <figure class="relative">
                 <img class="rounded-lg"
                      src="/img/activities/act_eco_bg.jpg"
@@ -78,9 +79,9 @@
     <!-- Events -->
     <section class="max-w-screen-xl px-4 mt-20 mx-auto">
         <h2 th:text="#{section.about.events}"
-            class="uppercase text-deep-sky-900 font-bold text-5xl mb-10">Events</h2>
+            class="uppercase text-deep-sky-900 font-bold md:text-5xl text-3xl mb-10">Events</h2>
 
-        <div class="grid grid-cols-3 gap-8">
+        <div class="grid md:grid-cols-3 grid-cols-1 gap-8">
             <th:block th:each="event : ${events}"
                       th:include="~{fragments/card/event-card :: eventCard(event)}"></th:block>
         </div>
@@ -97,7 +98,7 @@
             class="mt-20 bg-center bg-no-repeat bg-[url('/img/hackathon/bishkek_02.jpg')] bg-gray-400 bg-blend-multiply">
         <div class="max-w-screen-xl px-4 py-20 mx-auto">
             <h2 th:utext="#{home.section.hackathon.title}"
-                class="uppercase text-white text-center font-bold text-5xl mb-6">Analytics</h2>
+                class="uppercase text-white text-center font-bold md:text-5xl text-3xl mb-6">Analytics</h2>
 
             <div class="text-white font-light text-center text-lg">
                 <p th:text="#{home.section.hackathon.geo}"></p>
@@ -116,9 +117,9 @@
     <section class="bg-deep-sky-50">
         <div class="max-w-screen-xl px-4 py-20 mx-auto">
             <h2 th:text="#{section.education.speeches}"
-                class="uppercase text-deep-sky-900 font-bold text-5xl mb-10">Speeches</h2>
+                class="uppercase text-deep-sky-900 font-bold md:text-5xl text-3xl mb-10">Speeches</h2>
 
-            <div class="grid grid-cols-3 gap-8">
+            <div class="grid md:grid-cols-3 grid-cols-1 gap-8">
                 <th:block th:each="speech : ${speeches}"
                           th:include="~{fragments/card/speech-card.html :: speechCard(speech)}"></th:block>
             </div>
@@ -133,10 +134,10 @@
 
     <!-- Manual -->
     <section class="max-w-screen-xl px-4 mt-20 mx-auto" th:if="${manual != null}">
-        <div class="grid grid-cols-2 gap-8">
+        <div class="grid md:grid-cols-2 grid-cols-1 gap-8">
             <div>
-                <h2 th:text="${manual.title}"
-                    class="uppercase text-deep-sky-900 font-bold text-5xl leading-0">Title</h2>
+                <h2 class="uppercase text-deep-sky-900 font-bold md:text-5xl text-3xl leading-0"
+                    th:text="${manual.title}">Title</h2>
             </div>
             <div>
                 <p th:text="${manual.descr}"
@@ -152,7 +153,15 @@
     <section class="mt-20 bg-deep-sky-50">
         <div class="max-w-screen-xl px-4 py-20 mx-auto text-center">
             <div class="relative">
-                <div class="absolute -right-10 top-2 z-0">
+                <div class="md:w-10/12">
+                    <h2 class="uppercase text-deep-sky-900 font-bold md:text-5xl text-3xl mb-6"
+                        th:text="#{home.section.centers.title}">Title</h2>
+
+                    <p class="text-deep-sky-900 font-light leading-1 mb-6"
+                       th:utext="#{home.section.centers.descr}">Descr</p>
+                </div>
+
+                <div class="md:absolute md:-right-10 md:top-2 z-0 flex justify-center md:mb-0 mb-6">
                     <div class="w-[260px] h-[260px] rounded-full bg-soft-green-50 flex items-center justify-center">
                         <div class="w-[205px] h-[205px] rounded-full bg-soft-green-100 flex items-center justify-center">
                             <a class="block w-[165px] h-[165px] rounded-full bg-soft-green-800 flex items-center justify-center hover:bg-soft-green-700"
@@ -164,15 +173,7 @@
                 </div>
             </div>
 
-            <div class="w-10/12">
-                <h2 th:text="#{home.section.centers.title}"
-                    class="uppercase text-deep-sky-900 font-bold text-5xl mb-6">Title</h2>
-
-                <p th:utext="#{home.section.centers.descr}"
-                   class="text-deep-sky-900 font-light leading-1 mb-6">Descr</p>
-            </div>
-
-            <div class="grid grid-cols-3 gap-8">
+            <div class="grid md:grid-cols-3 grid-cols-1 gap-8">
                 <div class="bg-white border border-gray-100 rounded-lg h-full flex flex-col justify-between p-7">
                     <div class="flex-grow flex items-center justify-center">
                         <img th:src="@{/img/centers/coalition.png}"
@@ -207,7 +208,7 @@
     <!-- Legal documents -->
     <section class="max-w-screen-xl px-4 mt-20 mx-auto">
         <h2 th:text="#{section.constructor.documents}"
-            class="uppercase text-deep-sky-900 font-bold text-5xl mb-10">Activities</h2>
+            class="uppercase text-deep-sky-900 font-bold md:text-5xl text-3xl mb-10">Activities</h2>
 
         <div class="mb-12">
             <ul class="flex flex-wrap justify-between -mb-px text-sm font-medium text-center"
@@ -251,7 +252,7 @@
         </div>
 
         <div id="documents-tab-content">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8"
+            <div class="grid md:grid-cols-2 grid-cols-1 gap-8"
                  id="ecology"
                  role="tabpanel"
                  aria-labelledby="ecology-tab">
@@ -259,7 +260,7 @@
                 <th:block th:each="document : ${documents['ECOLOGY']}"
                           th:include="~{fragments/card/document-h-card.html :: documentHCard(document)}"></th:block>
             </div>
-            <div class="hidden grid grid-cols-1 md:grid-cols-2 gap-8"
+            <div class="hidden grid md:grid-cols-2 grid-cols-1 gap-8"
                  id="gender"
                  role="tabpanel"
                  aria-labelledby="gender-tab">
@@ -267,7 +268,7 @@
                 <th:block th:each="document : ${documents['GENDER']}"
                           th:include="~{fragments/card/document-h-card.html :: documentHCard(document)}"></th:block>
             </div>
-            <div class="hidden grid grid-cols-1 md:grid-cols-2 gap-8"
+            <div class="hidden grid md:grid-cols-2 grid-cols-1 gap-8"
                  id="privacy"
                  role="tabpanel"
                  aria-labelledby="privacy-tab">
@@ -288,9 +289,9 @@
     <section class="mt-20 bg-center bg-no-repeat bg-[url('/img/common/lib.jpg')] bg-gray-200 bg-blend-multiply">
         <div class="max-w-screen-xl px-4 py-20 mx-auto">
             <h2 th:text="#{section.analytics}"
-                class="uppercase text-white font-bold text-5xl mb-10">Analytics</h2>
+                class="uppercase text-white font-bold md:text-5xl text-3xl mb-10">Analytics</h2>
 
-            <div class="grid grid-cols-3 gap-8">
+            <div class="grid md:grid-cols-3 grid-cols-1 gap-8">
                 <th:block th:each="document : ${analytics}"
                           th:include="~{fragments/card/document-card.html :: documentCard(document)}"></th:block>
             </div>
@@ -300,9 +301,9 @@
     <!-- Posters -->
     <section class="max-w-screen-xl px-4 mt-20 mx-auto">
         <h2 th:text="#{section.education.posters}"
-            class="uppercase text-deep-sky-900 font-bold text-5xl mb-10">Posters</h2>
+            class="uppercase text-deep-sky-900 font-bold md:text-5xl text-3xl mb-10">Posters</h2>
 
-        <div class="grid grid-cols-3 gap-8">
+        <div class="grid md:grid-cols-3 grid-cols-1 gap-8">
             <th:block th:each="poster : ${posters}"
                       th:include="~{fragments/card/poster-card.html :: posterCard(poster)}"></th:block>
         </div>

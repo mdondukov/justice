@@ -33,11 +33,6 @@ public class AboutController {
                         .findFirst())
                 .ifPresent(document -> model.addAttribute("booklet", document));
 
-        List<BreadcrumbDto> breadcrumbs = List.of(
-                new BreadcrumbDto(messageSource.getMessage("section.about", null, locale), null)
-        );
-        model.addAttribute("breadcrumbs", breadcrumbs);
-
         return "pages/about";
     }
 
@@ -47,8 +42,7 @@ public class AboutController {
         model.addAttribute("data", page.getContent());
 
         List<BreadcrumbDto> breadcrumbs = List.of(
-                new BreadcrumbDto(messageSource.getMessage("section.about", null, locale), "/about"),
-                new BreadcrumbDto(messageSource.getMessage("section.about.partners", null, locale), null)
+                new BreadcrumbDto(messageSource.getMessage("section.about", null, locale), "/about")
         );
         model.addAttribute("breadcrumbs", breadcrumbs);
 
@@ -67,8 +61,7 @@ public class AboutController {
                 .ifPresent(document -> model.addAttribute("booklet", document));
 
         List<BreadcrumbDto> breadcrumbs = List.of(
-                new BreadcrumbDto(messageSource.getMessage("section.about", null, locale), "/about"),
-                new BreadcrumbDto(messageSource.getMessage("section.about.centers", null, locale), null)
+                new BreadcrumbDto(messageSource.getMessage("section.about", null, locale), "/about")
         );
         model.addAttribute("breadcrumbs", breadcrumbs);
 
@@ -78,8 +71,7 @@ public class AboutController {
     @GetMapping("/monitoring")
     public String monitoring(Model model, Locale locale) {
         List<BreadcrumbDto> breadcrumbs = List.of(
-                new BreadcrumbDto(messageSource.getMessage("section.about", null, locale), "/about"),
-                new BreadcrumbDto(messageSource.getMessage("section.about.monitoring", null, locale), null)
+                new BreadcrumbDto(messageSource.getMessage("section.about", null, locale), "/about")
         );
         model.addAttribute("breadcrumbs", breadcrumbs);
 

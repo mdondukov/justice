@@ -14,7 +14,7 @@
         </div>
 
         <h3 th:text="${event.title}"
-            class="text-deep-sky-900 font-bold text-3xl leading-0 mt-6">Title</h3>
+            class="text-deep-sky-900 font-bold md:text-3xl text-2xl leading-0 mt-6">Title</h3>
 
         <div class="my-12" th:if="${event.youtubeUrl == null}">
             <img class="rounded-lg mx-auto"
@@ -36,7 +36,7 @@
              th:utext="${event.content}">Content
         </div>
 
-        <div class="grid grid-cols-2 gap-8 mt-12"
+        <div class="grid md:grid-cols-2 grid-cols-1 gap-8 mt-12"
              th:if="${(event.agenda != null && !event.agenda.isEmpty()) || (event.press != null && !event.press.isEmpty())}">
             <div th:if="${event.agenda != null && !event.agenda.isEmpty()}"
                  th:insert="~{fragments/btn/download-btn :: downloadBtn(#{btn.download.agenda}, ${event.agenda.?[lang == #locale.language][0] ?: event.agenda[0]})}"

@@ -20,8 +20,7 @@ public class InformatoryController {
     @GetMapping("/publications")
     public String publications(Model model, Locale locale) {
         List<BreadcrumbDto> breadcrumbs = List.of(
-                new BreadcrumbDto(messageSource.getMessage("section.informatory", null, locale), null),
-                new BreadcrumbDto(messageSource.getMessage("section.informatory.publications", null, locale), null)
+                new BreadcrumbDto(messageSource.getMessage("section.informatory", null, locale), null)
         );
         model.addAttribute("breadcrumbs", breadcrumbs);
 
@@ -31,8 +30,7 @@ public class InformatoryController {
     @GetMapping("/presentations")
     public String presentations(Model model, Locale locale) {
         List<BreadcrumbDto> breadcrumbs = List.of(
-                new BreadcrumbDto(messageSource.getMessage("section.informatory", null, locale), null),
-                new BreadcrumbDto(messageSource.getMessage("section.informatory.presentations", null, locale), null)
+                new BreadcrumbDto(messageSource.getMessage("section.informatory", null, locale), null)
         );
         model.addAttribute("breadcrumbs", breadcrumbs);
 
@@ -42,8 +40,7 @@ public class InformatoryController {
     @GetMapping("/links")
     public String links(Model model, Locale locale) {
         List<BreadcrumbDto> breadcrumbs = List.of(
-                new BreadcrumbDto(messageSource.getMessage("section.informatory", null, locale), null),
-                new BreadcrumbDto(messageSource.getMessage("section.informatory.links", null, locale), null)
+                new BreadcrumbDto(messageSource.getMessage("section.informatory", null, locale), null)
         );
         model.addAttribute("breadcrumbs", breadcrumbs);
 
