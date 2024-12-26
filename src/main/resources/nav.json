@@ -1,0 +1,84 @@
+{
+  "main": [
+    {
+      "title": "section.about",
+      "url": "#",
+      "sub": [
+        {
+          "title": "section.about.common",
+          "url": "/about"
+        },
+        {
+          "title": "section.about.partners",
+          "url": "/about/partners"
+        },
+        {
+          "title": "section.about.events",
+          "url": "/events"
+        },
+        {
+          "title": "section.about.centers",
+          "url": "/about/centers"
+        },
+        {
+          "title": "section.about.monitoring",
+          "url": "/about/monitoring"
+        }
+      ]
+    },
+    {
+      "title": "section.education",
+      "url": "#",
+      "sub": [
+        {
+          "title": "section.education.manuals",
+          "url": "/education/manuals"
+        },
+        {
+          "title": "section.education.speeches",
+          "url": "/speeches"
+        }
+      ]
+    },
+    {
+      "title": "section.analytics",
+      "url": "/analytics"
+    },
+    {
+      "title": "section.subgrants",
+      "url": "/subgrants"
+    },
+    {
+      "title": "section.constructor",
+      "url": "#",
+      "sub": [
+        {
+          "title": "section.constructor.consult",
+          "url": "/constructor/consult"
+        },
+        {
+          "title": "section.constructor.documents",
+          "url": "/docs"
+        }
+      ]
+    },
+    {
+      "title": "section.informatory",
+      "url": "#",
+      "sub": [
+        {
+          "title": "section.informatory.publications",
+          "url": "/informatory/publications"
+        },
+        {
+          "title": "section.informatory.presentations",
+          "url": "/informatory/presentations"
+        },
+        {
+          "title": "section.informatory.links",
+          "url": "/informatory/links"
+        }
+      ]
+    }
+  ]
+}

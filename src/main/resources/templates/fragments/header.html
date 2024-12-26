@@ -4,11 +4,8 @@
             <a href="/">
                 <img th:src="@{/img/brand/logo.svg}" alt="Monitoring for Justice"/>
             </a>
-            <div class="flex items-center">
-                <div th:replace="~{fragments/nav/navigation :: mobile}"></div>
-                <div th:replace="~{fragments/nav/navigation :: main}"></div>
-                <div th:replace="~{fragments/nav/navigation :: tools}"></div>
-            </div>
+            <div th:replace="~{fragments/nav/navigation :: mobile}"></div>
+            <div th:replace="~{fragments/nav/navigation :: main}"></div>
         </div>
     </nav>
 </header>
