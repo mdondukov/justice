@@ -9,5 +9,7 @@
     <include file="2024-11-25--01-add-person-table.xml" relativeToChangelogFile="true"/>
     <include file="2024-11-27--01-rm-speaker-column.xml" relativeToChangelogFile="true"/>
     <include file="2024-12-04--01-add-page-tables.xml" relativeToChangelogFile="true"/>
+    <include file="2025-01-03--01-add-user-table.xml" relativeToChangelogFile="true"/>
+    <include file="2025-01-03--02-update-user-table.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>
