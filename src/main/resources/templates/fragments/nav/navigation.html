@@ -40,10 +40,10 @@
                     </svg>
                 </button>
 
-                <div th:attr="id=${'dropdownNavbar-' + iterStat.index}"
-                     class="z-10 hidden bg-white divide-y divide-deep-sky-100 rounded-lg shadow w-44">
-                    <ul class="py-2 text-xs text-gray-700"
-                        th:if="${navItem.sub != null}">
+                <div class="z-10 hidden bg-white divide-y divide-deep-sky-100 rounded-lg shadow w-44"
+                     th:attr="id=${'dropdownNavbar-' + iterStat.index}"
+                     th:if="${navItem.sub != null}">
+                    <ul class="py-2 text-xs text-gray-700">
                         <li th:each="subItem : ${navItem.sub}">
                             <a class="block px-5 py-2 text-deep-sky-900 hover:text-deep-sky-800"
                                th:text="${subItem.title}"

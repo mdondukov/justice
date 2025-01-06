@@ -80,5 +80,37 @@
         }
       ]
     }
+  ],
+  "admin": [
+    {
+      "title": "section.admin.dash",
+      "url": "/admin",
+      "icon": "fa-chart-pie"
+    },
+    {
+      "title": "section.admin.events",
+      "url": "/admin/events",
+      "icon": "fa-calendar-alt"
+    },
+    {
+      "title": "section.admin.speeches",
+      "url": "/admin/speeches",
+      "icon": "fa-microphone-alt"
+    },
+    {
+      "title": "section.admin.person",
+      "url": "/admin/person",
+      "icon": "fa-user-tie"
+    },
+    {
+      "title": "section.admin.poster",
+      "url": "/admin/poster",
+      "icon": "fa-image"
+    },
+    {
+      "title": "section.admin.docs",
+      "url": "/admin/docs",
+      "icon": "fa-file-alt"
+    }
   ]
 }

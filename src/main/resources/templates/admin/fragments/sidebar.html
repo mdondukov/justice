@@ -1,0 +1,55 @@
+<aside class="fixed top-0 left-0 z-40 w-64 h-screen pt-14 transition-transform -translate-x-full bg-white border-r border-gray-200 md:translate-x-0"
+       aria-label="Sidenav"
+       id="drawer-navigation">
+
+    <div class="overflow-y-auto py-5 px-3 h-full bg-white">
+        <ul class="space-y-2">
+            <li th:each="navItem, iterStat : ${adminNav}">
+                <a class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 group"
+                   th:if="${navItem.sub == null}"
+                   th:href="@{${navItem.url}}">
+
+                    <span class="flex items-center justify-center w-6 h-6">
+                        <i class="fa-solid text-gray-500"
+                           th:classappend="${navItem.icon}"></i>
+                    </span>
+
+                    <span class="ml-3" th:text="${navItem.title}">Title</span>
+                </a>
+
+                <button class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100"
+                        th:attr="aria-controls=${'dropdown-' + iterStat.index}, data-collapse-toggle=${'dropdown-' + iterStat.index}"
+                        th:if="${navItem.sub != null}"
+                        type="button">
+
+                    <span class="flex items-center justify-center w-6 h-6">
+                        <i class="fa-solid text-gray-500"
+                           th:classappend="${navItem.icon}"></i>
+                    </span>
+
+                    <span class="flex-1 ml-3 text-left whitespace-nowrap" th:text="${navItem.title}">Title</span>
+
+                    <svg aria-hidden="true"
+                         class="w-6 h-6"
+                         fill="currentColor"
+                         viewBox="0 0 20 20"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                              clip-rule="evenodd"></path>
+                    </svg>
+                </button>
+
+                <ul class="hidden py-2 space-y-2"
+                    th:attr="id=${'dropdown-' + iterStat.index}"
+                    th:if="${navItem.sub != null}">
+                    <li th:each="subItem : ${navItem.sub}">
+                        <a class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100"
+                           th:href="@{${subItem.url}}"
+                           th:text="${subItem.title}">Settings</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</aside>

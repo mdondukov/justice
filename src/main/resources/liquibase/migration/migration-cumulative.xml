@@ -11,5 +11,6 @@
     <include file="2024-12-04--01-add-page-tables.xml" relativeToChangelogFile="true"/>
     <include file="2025-01-03--01-add-user-table.xml" relativeToChangelogFile="true"/>
     <include file="2025-01-03--02-update-user-table.xml" relativeToChangelogFile="true"/>
+    <include file="2025-01-04--01-update-user-table.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

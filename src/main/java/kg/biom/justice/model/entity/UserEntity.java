@@ -35,4 +35,10 @@ public class UserEntity implements Serializable {
 
     @Column(name = "enabled", nullable = false)
     private boolean enabled;
+
+    @Column(name = "firstname", length = 100)
+    private String firstName;
+
+    @Column(name = "lastname", length = 100)
+    private String lastName;
 }

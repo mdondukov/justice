@@ -21,6 +21,7 @@ import java.util.*;
 public class NavServiceImpl implements NavService {
     private final ObjectMapper objectMapper;
     private final List<NavItemDto> main = new ArrayList<>();
+    private final List<NavItemDto> admin = new ArrayList<>();
 
     @Value("${content.nav.filename}")
     private String filename;
@@ -45,10 +46,16 @@ public class NavServiceImpl implements NavService {
         if (resource == null) throw new NotFoundException(String.format("Navigation file %s not found", filename));
         var nav = objectMapper.readValue(resource.getInputStream(), NavDto.class);
         main.addAll(nav.getMain());
+        admin.addAll(nav.getAdmin());
     }
 
     @Override
     public List<NavItemDto> getMainNav() {
         return main;
+    }
+
+    @Override
+    public List<NavItemDto> getAdminNav() {
+        return admin;
     }
 }

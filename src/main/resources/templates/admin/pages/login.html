@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru" th:replace="~{admin/layouts/blank :: blank(~{::title}, ~{::main})}">
+<head>
+    <title th:text="#{label.login} + ' | MJ'">Title</title>
+</head>
+
+<body>
+<main>
+    <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+        <a class="flex items-center mb-6 text-2xl font-semibold text-gray-900" href="/">
+            <img th:src="@{/img/brand/logo.svg}" alt="Monitoring for Justice"/>
+        </a>
+
+        <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
+            <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl"
+                    th:text="#{label.login}">Login to Admin</h1>
+
+                <!-- Сообщение об ошибке -->
+                <div th:if="${error}"
+                     class="bg-red-100 text-red-700 border border-red-400 p-2.5 rounded-lg mb-4">
+                    <p th:text="${error}"></p>
+                </div>
+
+                <!-- Форма логина -->
+                <form class="space-y-4 md:space-y-6"
+                      th:action="@{/login}"
+                      method="post">
+
+                    <div>
+                        <label class="block mb-2 text-sm font-medium text-gray-900"
+                               for="username"
+                               th:text="#{label.username}">Username</label>
+
+                        <input type="text"
+                               id="username"
+                               name="username"
+                               required
+                               class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5"
+                               placeholder="name@company.com">
+                    </div>
+
+                    <div>
+                        <label class="block mb-2 text-sm font-medium text-gray-900"
+                               for="password"
+                               th:text="#{label.password}">Password</label>
+
+                        <input type="password"
+                               id="password"
+                               name="password"
+                               required
+                               class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5"
+                               placeholder="••••••••">
+                    </div>
+
+                    <div>
+                        <button class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                                type="submit"
+                                th:text="#{btn.login}">Login
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>

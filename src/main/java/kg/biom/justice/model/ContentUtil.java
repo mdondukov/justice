@@ -1,14 +1,13 @@
 package kg.biom.justice.model;
 
 import kg.biom.justice.model.dto.AttachFile;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
+import lombok.experimental.UtilityClass;
 
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@UtilityClass
 public class ContentUtil {
 
     public static String toDtString(Instant createDate, String pattern) {

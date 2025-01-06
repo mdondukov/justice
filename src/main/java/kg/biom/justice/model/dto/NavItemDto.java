@@ -12,5 +12,6 @@ import java.util.List;
 public class NavItemDto {
     private String title;
     private String url;
+    private String icon;
     private List<NavItemDto> sub;
 }

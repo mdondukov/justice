@@ -28,17 +28,24 @@ public class NavInterceptor implements HandlerInterceptor {
         if (modelAndView == null) return;
 
         Locale locale = RequestContextUtils.getLocale(request);
-        List<NavItemDto> result = navService.getMainNav().stream()
+        List<NavItemDto> main = navService.getMainNav().stream()
                 .map(item -> localize(item, locale))
                 .toList();
 
-        modelAndView.addObject("mainNav", result);
+        modelAndView.addObject("mainNav", main);
+
+        List<NavItemDto> admin = navService.getAdminNav().stream()
+                .map(item -> localize(item, locale))
+                .toList();
+
+        modelAndView.addObject("adminNav", admin);
     }
 
     private NavItemDto localize(NavItemDto item, Locale locale) {
         NavItemDto result = new NavItemDto();
         result.setTitle(messageSource.getMessage(item.getTitle(), null, locale));
         result.setUrl(item.getUrl());
+        result.setIcon(item.getIcon());
         if (item.getSub() != null) result.setSub(item.getSub().stream()
                 .map(s -> localize(s, locale))
                 .toList());
