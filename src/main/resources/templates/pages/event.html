@@ -10,7 +10,7 @@
     </section>
     <article class="max-w-screen-md px-4 mx-auto">
         <div class="text-sm/5 text-gray-700"
-             th:text="${event.publishDate}">01.01.2024
+             th:text="${#temporals.format(event.publishDate, 'dd.MM.yyyy')}">01.01.2024
         </div>
 
         <h3 th:text="${event.title}"
@@ -21,7 +21,7 @@
                  th:src="${event.thumb}" th:alt="${event.title}"/>
         </div>
 
-        <div class="my-12" th:if="${event.youtubeUrl != null}">
+        <div class="my-12" th:if="${event.youtubeUrl != null and #strings.hasText(event.youtubeUrl)}">
             <iframe th:src="${event.youtubeUrl}"
                     class="w-full aspect-video rounded-lg"
                     frameborder="0"
@@ -39,11 +39,11 @@
         <div class="grid md:grid-cols-2 grid-cols-1 gap-8 mt-12"
              th:if="${(event.agenda != null && !event.agenda.isEmpty()) || (event.press != null && !event.press.isEmpty())}">
             <div th:if="${event.agenda != null && !event.agenda.isEmpty()}"
-                 th:insert="~{fragments/btn/download-btn :: downloadBtn(#{btn.download.agenda}, ${event.agenda.?[lang == #locale.language][0] ?: event.agenda[0]})}"
+                 th:insert="~{fragments/btn/download-btn :: downloadBtnList(#{btn.download.agenda}, ${event.agenda})}"
                  class="mt-12"></div>
 
             <div th:if="${event.press != null && !event.press.isEmpty()}"
-                 th:insert="~{fragments/btn/download-btn :: downloadBtn(#{btn.download.press}, ${event.press.?[lang == #locale.language][0] ?: event.press[0]})}"
+                 th:insert="~{fragments/btn/download-btn :: downloadBtnList(#{btn.download.press}, ${event.press})}"
                  class="mt-12"></div>
         </div>
     </article>

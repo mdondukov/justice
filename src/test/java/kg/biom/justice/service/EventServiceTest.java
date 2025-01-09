@@ -19,9 +19,9 @@ class EventServiceTest {
     private String defaultLocale;
 
     @Test
-    void getEvents() {
+    void getEventViews() {
         var locale = Locale.forLanguageTag(defaultLocale);
-        var result = assertDoesNotThrow(() -> eventService.getEvents(0, 3, locale));
+        var result = assertDoesNotThrow(() -> eventService.getActiveEvents(0, 3, locale));
         result.forEach(System.out::println);
     }
 }

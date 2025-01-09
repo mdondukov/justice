@@ -29,7 +29,7 @@ public class SpeechServiceImpl implements SpeechService {
     @Value("${content.base.path}")
     private String basePath;
 
-    @Value("${content.date.pattern}")
+    @Value("${content.date.pattern.view}")
     private String datePattern;
 
     @Override

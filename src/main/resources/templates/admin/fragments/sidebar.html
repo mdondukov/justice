@@ -5,7 +5,7 @@
     <div class="overflow-y-auto py-5 px-3 h-full bg-white">
         <ul class="space-y-2">
             <li th:each="navItem, iterStat : ${adminNav}">
-                <a class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 group"
+                <a class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg hover:bg-gray-100 group"
                    th:if="${navItem.sub == null}"
                    th:href="@{${navItem.url}}">
 

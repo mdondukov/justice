@@ -13,14 +13,14 @@
 
     <th:block th:replace="${links}" />
 
-    <script src="https://kit.fontawesome.com/498949fb43.js" crossorigin="anonymous"></script>
+    <script src="/js/fontawesome.min.js" th:src="@{/js/fontawesome.min.js}"></script>
 </head>
 <body>
 <header th:replace="~{fragments/header}"></header>
 <main th:replace="${content}"></main>
 <footer th:replace="~{fragments/footer}"></footer>
 
-<script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+<script src="/js/flowbite.min.js" th:src="@{/js/flowbite.min.js}"></script>
 
 <th:block th:replace="${scripts}" />
 </body>

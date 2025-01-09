@@ -2,8 +2,11 @@ package kg.biom.justice.service.impl;
 
 import kg.biom.justice.exception.NotFoundException;
 import kg.biom.justice.model.ContentUtil;
+import kg.biom.justice.model.dto.AttachFile;
 import kg.biom.justice.model.dto.EventDto;
+import kg.biom.justice.model.entity.EventEntity;
 import kg.biom.justice.model.entity.EventViewEntity;
+import kg.biom.justice.repository.EventRepository;
 import kg.biom.justice.repository.EventViewRepository;
 import kg.biom.justice.service.EventService;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +18,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 import java.util.Locale;
 
@@ -22,55 +28,132 @@ import java.util.Locale;
 @RequiredArgsConstructor
 public class EventServiceImpl implements EventService {
     private final EventViewRepository eventViewRepository;
+    private final EventRepository eventRepository;
 
     @Value("${content.base.path}")
     private String basePath;
 
-    @Value("${content.date.pattern}")
-    private String datePattern;
+    @Value("${content.date.zone}")
+    private String dateZone;
 
     @Override
-    public Page<EventDto> getEvents(int page, int limit, Locale locale) {
+    public Page<EventDto> getActiveEvents(int page, int limit, Locale locale) {
         Pageable pageable = PageRequest.of(page, limit, Sort.by(Sort.Direction.DESC, "publishDate"));
-        return eventViewRepository.findAllByLang(locale.getLanguage(), pageable).map(this::convertToDto);
+        return eventViewRepository.findAllActiveByLang(locale.getLanguage(), pageable)
+                .map(this::convertToDto);
     }
 
     @Override
     public List<EventDto> getLatestEvents(Long currentEventId, int limit, Locale locale) {
         Pageable pageable = PageRequest.of(0, limit, Sort.by(Sort.Direction.DESC, "publishDate"));
-        return eventViewRepository.findAllByLang(locale.getLanguage(), currentEventId, pageable)
+        return eventViewRepository.findAllActiveByLang(locale.getLanguage(), currentEventId, pageable)
                 .map(this::convertToDto)
                 .getContent();
     }
 
     @SneakyThrows
     @Override
-    public EventDto getEvent(String slug, Locale locale) {
-        return eventViewRepository.findBySlug(slug, locale.getLanguage())
+    public EventDto getActiveEvent(String slug, Locale locale) {
+        return eventViewRepository.findActiveBySlug(slug, locale.getLanguage())
                 .map(this::convertToDto)
                 .orElseThrow(() -> new NotFoundException("Event not found with slug: " + slug));
     }
 
+    @Override
+    public Page<EventDto> getEvents(int page, int limit, String searchQuery, String lang) {
+        Pageable pageable = PageRequest.of(page, limit, Sort.by(Sort.Direction.DESC, "publishDate"));
+
+        if (!searchQuery.isBlank())
+            return eventViewRepository.search(searchQuery, lang, pageable)
+                    .map(this::convertToDto);
+
+        return eventViewRepository.findAllByLang(lang, pageable)
+                .map(this::convertToDto);
+    }
+
+    @SneakyThrows
+    @Override
+    public EventDto getEvent(Long id, String lang) {
+        List<EventViewEntity> entities = eventViewRepository.findAllById(id);
+        if (entities.isEmpty()) throw new NotFoundException("Event not found by id: " + id);
+        return entities.stream()
+                .filter(entity -> entity.getLang().equalsIgnoreCase(lang))
+                .findFirst()
+                .map(this::convertToDto)
+                .orElseGet(() -> getEventWithEmptyTranslate(id, lang));
+    }
+
+    @Override
+    public EventDto getEmptyEvent(String lang) {
+        return EventDto.builder()
+                .lang(lang)
+                .title("")
+                .descr("")
+                .content("")
+                .thumb("")
+                .youtubeUrl("")
+                .createDate(LocalDateTime.now(ZoneId.of(dateZone)))
+                .publishDate(LocalDate.now(ZoneId.of(dateZone)))
+                .active(false)
+                .build();
+    }
+
+    @SneakyThrows
+    private EventDto getEventWithEmptyTranslate(Long id, String lang) {
+        return eventRepository.findById(id)
+                .map(entity -> convertToDto(entity, lang))
+                .orElseThrow(() -> new NotFoundException("Event not found by id: " + id));
+    }
+
+    private EventDto convertToDto(EventEntity entity, String lang) {
+        EventDto dto = EventDto.builder()
+                .id(entity.getId())
+                .slug(entity.getSlug())
+                .lang(lang)
+                .title("")
+                .descr("")
+                .content("")
+                .thumb(ContentUtil.mergePath(basePath, entity.getThumbnail()))
+                .createDate(entity.getCreateDate().atZone(ZoneId.of(dateZone)).toLocalDateTime())
+                .publishDate(entity.getPublishDate().atZone(ZoneId.of(dateZone)).toLocalDate())
+                .active(entity.isActive())
+                .build();
+
+        return handle(dto, entity.getAgenda(), entity.getPress(), entity.getPictures());
+    }
+
     private EventDto convertToDto(EventViewEntity entity) {
-        EventDto event = new EventDto();
-        event.setId(entity.getId());
-        event.setSlug(entity.getSlug());
-        event.setTitle(entity.getTitle());
-        event.setDescr(entity.getDescr());
-        event.setContent(entity.getContent());
-        event.setThumb(ContentUtil.mergePath(basePath, entity.getThumbnail()));
-        event.setYoutubeUrl(entity.getYoutubeUrl());
-        event.setPublishDate(ContentUtil.toDtString(entity.getPublishDate(), datePattern));
+        EventDto dto = EventDto.builder()
+                .id(entity.getId())
+                .slug(entity.getSlug())
+                .translateId(entity.getEventLangId())
+                .lang(entity.getLang())
+                .title(entity.getTitle())
+                .descr(entity.getDescr())
+                .content(entity.getContent())
+                .thumb(ContentUtil.mergePath(basePath, entity.getThumbnail()))
+                .youtubeUrl(entity.getYoutubeUrl())
+                .createDate(entity.getCreateDate().atZone(ZoneId.of(dateZone)).toLocalDateTime())
+                .publishDate(entity.getPublishDate().atZone(ZoneId.of(dateZone)).toLocalDate())
+                .active(entity.isActive())
+                .build();
 
-        if (entity.getAgenda() != null)
-            event.setAgenda(entity.getAgenda().stream().map(file -> ContentUtil.handleAttachFile(file, basePath)).toList());
+        return handle(dto, entity.getAgenda(), entity.getPress(), entity.getPictures());
+    }
 
-        if (entity.getPress() != null)
-            event.setPress(entity.getPress().stream().map(file -> ContentUtil.handleAttachFile(file, basePath)).toList());
+    private EventDto handle(EventDto dto, List<AttachFile> agenda, List<AttachFile> press, List<String> pictures) {
+        if (agenda != null)
+            dto.setAgenda(agenda.stream().map(file ->
+                    ContentUtil.handleAttachFile(file, basePath)).toList());
 
-        if (entity.getPictures() != null)
-            event.setPictures(entity.getPictures().stream().map(p -> ContentUtil.mergePath(basePath, p)).toList());
+        if (press != null)
+            dto.setPress(press.stream().map(file ->
+                    ContentUtil.handleAttachFile(file, basePath)).toList());
 
-        return event;
+        if (pictures != null)
+            dto.setPictures(pictures.stream().map(picture ->
+                    ContentUtil.mergePath(basePath, picture)).toList());
+
+        return dto;
     }
 }

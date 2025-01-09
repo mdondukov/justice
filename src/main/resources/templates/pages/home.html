@@ -143,7 +143,7 @@
                 <p th:text="${manual.descr}"
                    class="text-deep-sky-900 font-light leading-1">Descr</p>
 
-                <div th:insert="~{fragments/btn/download-btn :: downloadBtn(#{btn.download.publication}, ${manual.files.?[lang == #locale.language][0] ?: manual.files[0]})}"
+                <div th:insert="~{fragments/btn/download-btn :: downloadBtnList(#{btn.download.publication}, ${manual.files})}"
                      class="mt-6"></div>
             </div>
         </div>

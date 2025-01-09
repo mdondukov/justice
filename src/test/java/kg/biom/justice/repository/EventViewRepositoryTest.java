@@ -23,7 +23,7 @@ class EventViewRepositoryTest {
     void findAll() {
         Pageable pageable = PageRequest.of(0, 3, Sort.by(Sort.Direction.DESC, "publishDate"));
         var result = assertDoesNotThrow(() ->
-                eventViewRepository.findAllByLang(defaultLocale, pageable));
+                eventViewRepository.findAllActiveByLang(defaultLocale, pageable));
 
         for (var entity : result) System.out.println(entity);
     }

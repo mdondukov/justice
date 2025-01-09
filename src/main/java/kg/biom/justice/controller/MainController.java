@@ -34,7 +34,7 @@ public class MainController {
 
     @GetMapping("/")
     public String home(Model model, Locale locale) {
-        model.addAttribute("events", eventService.getEvents(0, defaultLimit, locale).getContent());
+        model.addAttribute("events", eventService.getActiveEvents(0, defaultLimit, locale).getContent());
         model.addAttribute("speeches", speechService.getSpeeches(0, defaultLimit, locale).getContent());
         documentService.getDocument(1L, locale).ifPresent(manual -> model.addAttribute("manual", manual));
 

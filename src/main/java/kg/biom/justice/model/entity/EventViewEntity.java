@@ -30,6 +30,9 @@ public class EventViewEntity implements Serializable {
     @Column(name = "slug")
     private String slug;
 
+    @Column(name = "event_lang_id")
+    private Long eventLangId;
+
     @Column(name = "lang")
     private String lang;
 

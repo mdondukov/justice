@@ -29,7 +29,7 @@ public class EventController {
 
     @GetMapping
     public String getEventsPage(@RequestParam(defaultValue = "0") int page, Model model, Locale locale) {
-        Page<EventDto> eventsPage = eventService.getEvents(page, pageLimit, locale);
+        Page<EventDto> eventsPage = eventService.getActiveEvents(page, pageLimit, locale);
         model.addAttribute("eventsPage", eventsPage);
         model.addAttribute("currentPage", page);
 
@@ -43,7 +43,7 @@ public class EventController {
 
     @GetMapping("/{slug}")
     public String getEventPage(@PathVariable String slug, Model model, Locale locale) {
-        EventDto event = eventService.getEvent(slug, locale);
+        EventDto event = eventService.getActiveEvent(slug, locale);
         model.addAttribute("event", event);
 
         List<EventDto> latestEvents = eventService.getLatestEvents(event.getId(), pageLimit, locale);

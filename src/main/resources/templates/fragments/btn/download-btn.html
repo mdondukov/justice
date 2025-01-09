@@ -1,8 +1,21 @@
-<div th:fragment="downloadBtn(name, file)" class="flex justify-start items-center">
-    <a class="font-medium text-deep-sky-900 hover:text-deep-sky-800"
-       th:href="${file.path}"
-       th:text="${name}"
-       target="_blank">Download</a>
+<div>
+    <div th:fragment="downloadBtn(name, file)" class="flex justify-start items-center">
+        <a class="font-medium text-deep-sky-900 hover:text-deep-sky-800"
+           th:href="${file.path}"
+           th:text="${name}"
+           target="_blank">Download</a>
 
-    <img class="ml-4" th:src="@{/img/common/down.svg}" th:alt="${name}"/>
+        <img class="ml-4" th:src="@{/img/common/down.svg}" th:alt="${name}"/>
+    </div>
+
+    <div th:fragment="downloadBtnList(name, files)"
+         class="flex justify-start items-center">
+        <a class="font-medium text-deep-sky-900 hover:text-deep-sky-800"
+           th:with="file=${files.?[lang == #locale.language][0] ?: files[0]}"
+           th:href="${file.path}"
+           th:text="${name}"
+           target="_blank">Download</a>
+
+        <img class="ml-4" th:src="@{/img/common/down.svg}" th:alt="${name}"/>
+    </div>
 </div>
