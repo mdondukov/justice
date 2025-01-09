@@ -2524,6 +2524,36 @@ body {
   background-color: #fff;
 }
 
+.ql-toolbar.ql-snow {
+  background-color: rgb(249 250 251);
+  border-width: 0 0 1px 0;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
+.ql-container.ql-snow {
+  font-family: 'Roboto', sans-serif;
+  padding: 0.625rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: rgb(17 24 39);
+  border: none;
+}
+
+.ql-editor {
+  min-height: 100px;
+  padding: 0;
+  border: none;
+}
+
+.ql-editor p {
+  margin-bottom: 1.5rem;
+}
+
+.ql-editor p:last-child {
+  margin-bottom: 0;
+}
+
 .brand {
   padding-top: 10px;
 }

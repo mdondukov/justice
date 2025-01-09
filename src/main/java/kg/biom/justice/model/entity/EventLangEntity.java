@@ -33,7 +33,8 @@ public class EventLangEntity implements Serializable {
     @Column(name = "descr")
     private String descr;
 
-    @Column(name = "content")
+    @Lob
+    @Column(name = "content", columnDefinition = "TEXT")
     private String content;
 
     @Column(name = "youtube_url")

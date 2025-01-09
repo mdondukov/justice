@@ -51,6 +51,7 @@ public class EventDto {
     private LocalDate publishDate;
 
     private String content;
+
     private List<AttachFile> agenda;
     private List<AttachFile> press;
     private List<String> pictures;
