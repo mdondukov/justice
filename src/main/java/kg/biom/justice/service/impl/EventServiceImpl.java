@@ -30,8 +30,8 @@ public class EventServiceImpl implements EventService {
     private final EventViewRepository eventViewRepository;
     private final EventRepository eventRepository;
 
-    @Value("${content.base.path}")
-    private String basePath;
+    @Value("${content.base.url}")
+    private String baseUrl;
 
     @Value("${content.date.zone}")
     private String dateZone;
@@ -113,7 +113,7 @@ public class EventServiceImpl implements EventService {
                 .title("")
                 .descr("")
                 .content("")
-                .thumb(ContentUtil.mergePath(basePath, entity.getThumbnail()))
+                .thumb(ContentUtil.mergePath(baseUrl, entity.getThumbnail()))
                 .createDate(entity.getCreateDate().atZone(ZoneId.of(dateZone)).toLocalDateTime())
                 .publishDate(entity.getPublishDate().atZone(ZoneId.of(dateZone)).toLocalDate())
                 .active(entity.isActive())
@@ -131,7 +131,7 @@ public class EventServiceImpl implements EventService {
                 .title(entity.getTitle())
                 .descr(entity.getDescr())
                 .content(entity.getContent())
-                .thumb(ContentUtil.mergePath(basePath, entity.getThumbnail()))
+                .thumb(ContentUtil.mergePath(baseUrl, entity.getThumbnail()))
                 .youtubeUrl(entity.getYoutubeUrl())
                 .createDate(entity.getCreateDate().atZone(ZoneId.of(dateZone)).toLocalDateTime())
                 .publishDate(entity.getPublishDate().atZone(ZoneId.of(dateZone)).toLocalDate())
@@ -144,15 +144,15 @@ public class EventServiceImpl implements EventService {
     private EventDto handle(EventDto dto, List<AttachFile> agenda, List<AttachFile> press, List<String> pictures) {
         if (agenda != null)
             dto.setAgenda(agenda.stream().map(file ->
-                    ContentUtil.handleAttachFile(file, basePath)).toList());
+                    ContentUtil.handleAttachFile(file, baseUrl)).toList());
 
         if (press != null)
             dto.setPress(press.stream().map(file ->
-                    ContentUtil.handleAttachFile(file, basePath)).toList());
+                    ContentUtil.handleAttachFile(file, baseUrl)).toList());
 
         if (pictures != null)
             dto.setPictures(pictures.stream().map(picture ->
-                    ContentUtil.mergePath(basePath, picture)).toList());
+                    ContentUtil.mergePath(baseUrl, picture)).toList());
 
         return dto;
     }

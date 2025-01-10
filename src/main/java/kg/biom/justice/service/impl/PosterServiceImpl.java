@@ -25,8 +25,8 @@ public class PosterServiceImpl implements PosterService {
     private final PosterViewRepository posterViewRepository;
     private final PosterRepository posterRepository;
 
-    @Value("${content.base.path}")
-    private String basePath;
+    @Value("${content.base.url}")
+    private String baseUrl;
 
     @Override
     public Page<PosterDto> getPosters(int page, int limit, Locale locale) {
@@ -48,10 +48,10 @@ public class PosterServiceImpl implements PosterService {
         poster.setSlug(entity.getSlug());
         poster.setTitle(entity.getTitle());
         poster.setDescr(entity.getDescr());
-        poster.setThumb(ContentUtil.mergePath(basePath, entity.getThumbnail()));
+        poster.setThumb(ContentUtil.mergePath(baseUrl, entity.getThumbnail()));
 
         if (entity.getFiles() != null)
-            poster.setFiles(entity.getFiles().stream().map(f -> ContentUtil.handleAttachFile(f, basePath)).toList());
+            poster.setFiles(entity.getFiles().stream().map(f -> ContentUtil.handleAttachFile(f, baseUrl)).toList());
 
         List<String> activityCodes = posterRepository.findActivitySlugsByPosterId(poster.getId());
         poster.setActivityCodes(activityCodes);

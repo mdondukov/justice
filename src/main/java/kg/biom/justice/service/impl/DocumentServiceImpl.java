@@ -22,8 +22,8 @@ import java.util.*;
 public class DocumentServiceImpl implements DocumentService {
     private final DocumentViewRepository documentViewRepository;
 
-    @Value("${content.base.path}")
-    private String basePath;
+    @Value("${content.base.url}")
+    private String baseUrl;
 
     @Override
     public Page<DocumentDto> getDocuments(DocumentType type, int page, int limit, Locale locale) {
@@ -57,7 +57,7 @@ public class DocumentServiceImpl implements DocumentService {
         Map<AttachFileType, Long> typeCounts = new HashMap<>();
         List<AttachFile> files = entity.getFiles().stream()
                 .peek(file -> {
-                    file.setPath(String.format("%s/%s", basePath, file.getPath()));
+                    file.setPath(String.format("%s/%s", baseUrl, file.getPath()));
                     typeCounts.merge(file.getType(), 1L, Long::sum);
                 })
                 .toList();

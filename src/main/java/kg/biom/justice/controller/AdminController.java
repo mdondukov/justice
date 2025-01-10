@@ -3,17 +3,23 @@ package kg.biom.justice.controller;
 import jakarta.validation.Valid;
 import kg.biom.justice.model.dto.EventDto;
 import kg.biom.justice.service.EventService;
+import kg.biom.justice.service.FileStorageService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.net.URI;
 import java.util.Locale;
+import java.util.Objects;
 
 @Slf4j
 @Controller
@@ -22,9 +28,13 @@ import java.util.Locale;
 public class AdminController {
     private final MessageSource messageSource;
     private final EventService eventService;
+    private final FileStorageService fileStorageService;
 
     @Value("${content.events.limit.table}")
     private int limit;
+
+    @Value("${content.upload.relative_path.thumb}")
+    private String thumbUploadPath;
 
     @GetMapping
     public String home() {
@@ -87,5 +97,37 @@ public class AdminController {
         model.addAttribute("successMessage", "Changes saved successfully!");
 
         return "admin/pages/event";
+    }
+
+    @PostMapping("/thumb/upload")
+    @ResponseBody
+    public ResponseEntity<String> uploadThumbnail(@RequestParam("thumbFile") MultipartFile file) {
+        try {
+            if (!Objects.requireNonNull(file.getContentType()).startsWith("image/")) {
+                return ResponseEntity.badRequest().body("Invalid file type. Only images are allowed.");
+            }
+
+            URI fileUrl = fileStorageService.save(file, thumbUploadPath);
+            log.debug("uploading thumbnail {}", fileUrl);
+            return ResponseEntity.ok(fileUrl.toString());
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Failed to upload the file.");
+        }
+    }
+
+    @PostMapping("/thumb/delete")
+    @ResponseBody
+    public ResponseEntity<String> deleteThumbnail(@RequestParam("fileUrl") String fileUrl) {
+        try {
+            fileStorageService.deleteByUri(URI.create(fileUrl), thumbUploadPath);
+            log.debug("deleted thumbnail {}", fileUrl);
+            return ResponseEntity.ok().build();
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Failed to delete the file.");
+        }
     }
 }

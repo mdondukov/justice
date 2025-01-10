@@ -26,8 +26,8 @@ public class SpeechServiceImpl implements SpeechService {
     private final SpeechViewRepository speechViewRepository;
     private final PersonMapper personMapper;
 
-    @Value("${content.base.path}")
-    private String basePath;
+    @Value("${content.base.url}")
+    private String baseUrl;
 
     @Value("${content.date.pattern.view}")
     private String datePattern;
@@ -52,19 +52,19 @@ public class SpeechServiceImpl implements SpeechService {
         speech.setSlug(entity.getSlug());
         speech.setTitle(entity.getTitle());
         speech.setDescr(entity.getDescr());
-        speech.setThumb(ContentUtil.mergePath(basePath, entity.getThumbnail()));
+        speech.setThumb(ContentUtil.mergePath(baseUrl, entity.getThumbnail()));
         speech.setYoutubeUrl(entity.getYoutubeUrl());
         speech.setPublishDate(ContentUtil.toDtString(entity.getPublishDate(), datePattern));
 
         if (entity.getPresentation() != null) {
             AttachFile presentation = entity.getPresentation();
-            presentation.setPath(ContentUtil.mergePath(basePath, presentation.getPath()));
+            presentation.setPath(ContentUtil.mergePath(baseUrl, presentation.getPath()));
             speech.setPresentation(presentation);
         }
 
         if (entity.getPerson() != null) {
             PersonDto person = personMapper.toDto(entity.getPerson());
-            person.setPhoto(ContentUtil.mergePath(basePath, entity.getPerson().getPhoto()));
+            person.setPhoto(ContentUtil.mergePath(baseUrl, entity.getPerson().getPhoto()));
             speech.setPerson(person);
         }
 
